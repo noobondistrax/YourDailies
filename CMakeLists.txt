@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(YourDailies VERSION 0.1 LANGUAGES CXX)
+project(YourDailies VERSION 0.1 LANGUAGES CXX C)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -19,6 +19,10 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        database.cpp
+        database.h
+        globals.h
+        sqlite/sqlite3.c
         ${TS_FILES}
 )
 
@@ -26,6 +30,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(YourDailies
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        database.cpp
+        database.h
+        globals.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -50,6 +57,7 @@ else()
 endif()
 
 target_link_libraries(YourDailies PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_include_directories(YourDailies PRIVATE sqlite)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
