@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setFixedSize(size());
 
     dataBase.open("test.db","/database");
 }

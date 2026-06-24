@@ -13,7 +13,511 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1280</width>
+      <height>700</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="page_login">
+     <widget class="QLineEdit" name="login_email">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>290</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Deine E-Mailadresse</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>example@mail.com</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="login_password">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>370</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Dein persönliches Passwort</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+      </property>
+      <property name="placeholderText">
+       <string>**********</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="login_email_label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>270</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>E-MAIL</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="login_password_label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>350</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>PASSWORT</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="login_pB_login">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>430</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>ANMELDEN</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="login_pB_register">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>490</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>REGISTRIEREN</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="login_pb_resetPW">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>490</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PASSWORT RESET</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="login_title">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>100</y>
+        <width>571</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>70</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>YourDailies</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_register">
+     <widget class="QLineEdit" name="register_email">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>370</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Deine E-Mailadresse</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>example@mail.com</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_email_label">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>350</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>E-MAIL</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="register_password">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>450</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Dein persönliches Passwort</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+      </property>
+      <property name="placeholderText">
+       <string>**********</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="register_pB_register">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>530</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>REGISTRIEREN</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_password_label">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>430</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>PASSWORT</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="register_email_confirm">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>370</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Deine E-Mailadresse</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>example@mail.com</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_email_confirm_label">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>350</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>E-MAIL BESTÄTIGEN</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_subtitle">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>190</y>
+        <width>571</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>24</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Registrieren</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_title">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>100</y>
+        <width>571</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>70</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>YourDailies</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_password_confirm_label">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>430</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>PASSWORT BESTÄTIGEN</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="register_password_confirm">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>450</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Dein persönliches Passwort</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+      </property>
+      <property name="placeholderText">
+       <string>**********</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="register_name">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>290</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Deine E-Mailadresse</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding-left: 8px;
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>BENUTZERNAME</string>
+      </property>
+      <property name="placeholderText">
+       <string>example@mail.com</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="register_name_label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>270</y>
+        <width>241</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>BENUTZERNAME</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
