@@ -52,7 +52,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">padding-left: 8px;
-background-color: rgb(255, 255, 255);</string>
+background-color: rgb(206, 206, 206);</string>
       </property>
       <property name="text">
        <string/>
@@ -80,13 +80,13 @@ background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">padding-left: 8px;
-background-color: rgb(255, 255, 255);</string>
+background-color: rgb(206, 206, 206);</string>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="echoMode">
-       <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+       <enum>QLineEdit::EchoMode::Password</enum>
       </property>
       <property name="placeholderText">
        <string>**********</string>
@@ -107,6 +107,9 @@ background-color: rgb(255, 255, 255);</string>
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>E-MAIL</string>
       </property>
@@ -125,6 +128,9 @@ background-color: rgb(255, 255, 255);</string>
         <pointsize>13</pointsize>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>PASSWORT</string>
@@ -246,6 +252,9 @@ background-color: rgb(255, 255, 255);</string>
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>E-MAIL</string>
       </property>
@@ -315,6 +324,9 @@ background-color: rgb(255, 255, 255);</string>
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>PASSWORT</string>
       </property>
@@ -361,6 +373,9 @@ background-color: rgb(255, 255, 255);</string>
         <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>E-MAIL BESTÄTIGEN</string>
@@ -433,6 +448,9 @@ color: rgb(255, 255, 255);</string>
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>PASSWORT BESTÄTIGEN</string>
       </property>
@@ -490,10 +508,10 @@ background-color: rgb(255, 255, 255);</string>
 background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>BENUTZERNAME</string>
+       <string/>
       </property>
       <property name="placeholderText">
-       <string>example@mail.com</string>
+       <string>BENUTZERNAME</string>
       </property>
      </widget>
      <widget class="QLabel" name="register_name_label">
@@ -510,6 +528,9 @@ background-color: rgb(255, 255, 255);</string>
         <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>BENUTZERNAME</string>

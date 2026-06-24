@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "designer.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     setFixedSize(size());
+
+    Designer::styleAppBackground(ui->stackedWidget);
+    Designer::passwordToggle(ui->login_password);
 
     dataBase.open("test.db","/database");
 }

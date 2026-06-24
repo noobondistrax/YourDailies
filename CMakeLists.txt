@@ -33,6 +33,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         database.cpp
         database.h
         globals.h
+        designer.h
+        designer.cpp
+        resources.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
