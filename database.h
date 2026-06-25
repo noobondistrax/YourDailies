@@ -1,6 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#pragma once
 #include "sqlite3.h"
 #include <QMap>
 #include "globals.h"
@@ -30,6 +31,7 @@ public:
 
     bool open(const QString& fileName, const QString& wantedPath);
     bool dbTableStatus(tableNames,tableStatus);
+    bool adminExists();
 
 
 private:

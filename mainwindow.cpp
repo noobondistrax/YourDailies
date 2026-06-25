@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "designer.h"
+#include "userHandling.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -13,8 +14,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     Designer::styleAppBackground(ui->stackedWidget);
     Designer::passwordToggle(ui->login_password);
+    Designer::passwordToggle(ui->register_password);
+    Designer::passwordToggle(ui->register_password_confirm);
 
-    dataBase.open("test.db","/database");
+    dataBase.open("yourdailies.db","/database");
+
+    programmStart(dataBase);
+
 }
 
 MainWindow::~MainWindow()

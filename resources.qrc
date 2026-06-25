@@ -3,4 +3,7 @@
         <file>img/eye_closed.png</file>
         <file>img/eye_open.png</file>
     </qresource>
+    <qresource prefix="/logo">
+        <file>img/logo.png</file>
+    </qresource>
 </RCC>

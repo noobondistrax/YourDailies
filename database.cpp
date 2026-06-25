@@ -42,7 +42,6 @@ bool Database::open(const QString& fileName, const QString& wantedPath) {
     return true;
 }
 
-
 void Database::createUsersTable() {
     const char* sql = "CREATE TABLE IF NOT EXISTS users ("
                       "user_id INTEGER PRIMARY KEY, "       // in SQL: 'VARCHAR(255)', but SQLite ignores the length "(255)" and convert 'VARCHAR' to 'TEXT'
@@ -62,6 +61,7 @@ void Database::createUsersTable() {
         qDebug() << "Fehler beim Erstellen der 'users' Tabelle:" << errMsg;
         m_tableStatus[tableNames::users] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
     qDebug() << "'users' Tabelle erfolgreich erstellt (oder existierte schon)!";
     m_tableStatus[tableNames::users] = tableStatus::created;
@@ -84,6 +84,7 @@ void Database::createUserSettingsTable() {
         qDebug() << "Fehler beim Erstellen der 'user_settings' Tabelle:" << errMsg;
         m_tableStatus[tableNames::user_settings] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'user_settings' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -106,6 +107,7 @@ void Database::createWidgetsTable() {
         qDebug() << "Fehler beim Erstellen der 'widgets' Tabelle:" << errMsg;
         m_tableStatus[tableNames::widgets] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'widgets' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -135,6 +137,7 @@ void Database::createUserWidgetsTabele() {
         qDebug() << "Fehler beim Erstellen der 'user_widgets' Tabelle:" << errMsg;
         m_tableStatus[tableNames::user_widgets] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'user_widgets' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -161,6 +164,7 @@ void Database::createReminderTable() {
         qDebug() << "Fehler beim Erstellen der 'reminders' Tabelle:" << errMsg;
         m_tableStatus[tableNames::reminders] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'reminders' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -186,6 +190,7 @@ void Database::createAppointmentsTable() {
         qDebug() << "Fehler beim Erstellen der 'appointments' Tabelle:" << errMsg;
         m_tableStatus[tableNames::appointments] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'appointments' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -208,6 +213,7 @@ void Database::createAppointmentParticipantsTable() {
         qDebug() << "Fehler beim Erstellen der 'appointments' Tabelle:" << errMsg;
         m_tableStatus[tableNames::appointment_participants] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'appointments' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -233,6 +239,7 @@ void Database::createAuditLogsTable() {
         qDebug() << "Fehler beim Erstellen der 'audit_logs' Tabelle:" << errMsg;
         m_tableStatus[tableNames::audit_logs] = tableStatus::failed;
         sqlite3_free(errMsg);
+        return;
     }
 
     qDebug() << "'audit_logs' Tabelle erfolgreich erstellt (oder existierte schon)!";
@@ -243,3 +250,17 @@ void Database::createAuditLogsTable() {
 bool Database::dbTableStatus(tableNames name,tableStatus status) {
     return m_tableStatus.value(name, tableStatus::unknown) == status;
 }
+
+bool Database::adminExists() {
+    const char* sql = "SELECT 1 FROM users WHERE role = ? LIMIT 1;";
+    sqlite3_stmt* stmt;
+
+    sqlite3_prepare_v2(m_db, sql, -1, &stmt, nullptr);
+    sqlite3_bind_text(stmt, 1, "admin", -1, SQLITE_STATIC);
+
+    bool exists = (sqlite3_step(stmt) == SQLITE_ROW);
+
+    sqlite3_finalize(stmt);
+    return exists;
+}
+
