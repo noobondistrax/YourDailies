@@ -16,7 +16,8 @@
 
 
 
-{
+/*
+ {
     if (widget)
         widget->setStyleSheet("QStackedWidget#stackedWidget {background-color: qlineargradient("
                               "spread:pad,"
@@ -28,6 +29,7 @@
                               "stop:0.6 #bbbbbb,"
                               "stop:1 #E3E0DC);}");
 }
+*/
 
 void Designer::passwordToggle(QLineEdit *lineEdit)
 {

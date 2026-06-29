@@ -16,12 +16,9 @@ set(TS_FILES YourDailies_de_DE.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        database.cpp
-        database.h
-        globals.h
+        ui/mainwindow.cpp
+        ui/mainwindow.h
+        ui/mainwindow.ui
         sqlite/sqlite3.c
         ${TS_FILES}
 )
@@ -30,17 +27,18 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(YourDailies
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        database.cpp
-        database.h
-        globals.h
-        designer.h
-        designer.cpp
+        repository/database.cpp
+        repository/database.h
+        utils/globals.h
+        ui/designer.h
+        ui/designer.cpp
         resources.qrc
-        userHandling.cpp
-        userHandling.h
-        registration.h registration.cpp registration.ui
-        session.h
-        session.cpp
+        ui/userHandling.cpp
+        ui/userHandling.h
+        ui/registration.h
+        ui/registration.cpp
+        ui/registration.ui
+        app/session.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -65,7 +63,7 @@ else()
 endif()
 
 target_link_libraries(YourDailies PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_include_directories(YourDailies PRIVATE sqlite)
+target_include_directories(YourDailies PRIVATE sqlite ui repository app utils models servcies)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
