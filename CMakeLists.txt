@@ -15,30 +15,43 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 set(TS_FILES YourDailies_de_DE.ts)
 
 set(PROJECT_SOURCES
-        main.cpp
-        ui/mainwindow.cpp
-        ui/mainwindow.h
-        ui/mainwindow.ui
-        sqlite/sqlite3.c
-        ${TS_FILES}
+    main.cpp
+    resources.qrc
+    app/appcontext.h
+    app/appcontext.cpp
+    app/usersession.h
+    app/usersession.cpp
+    repository/database.cpp
+    repository/database.h
+    services/dashboardservice.h
+    services/dashboardservice.cpp
+    services/userservice.h
+    services/userservice.cpp
+    services/widgetservice.h
+    services/widgetservice.cpp
+    ui/designer.h
+    ui/designer.cpp
+    ui/mainwindow.cpp
+    ui/mainwindow.h
+    ui/mainwindow.ui
+    ui/registration.h
+    ui/registration.cpp
+    ui/registration.ui
+    ui/userHandling.cpp
+    ui/userHandling.h
+    utils/globals.h
+    utils/logger.h
+    utils/logger.cpp
+    sqlite/sqlite3.c
+    ${TS_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(YourDailies
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        repository/database.cpp
-        repository/database.h
-        utils/globals.h
-        ui/designer.h
-        ui/designer.cpp
-        resources.qrc
-        ui/userHandling.cpp
-        ui/userHandling.h
-        ui/registration.h
-        ui/registration.cpp
-        ui/registration.ui
-        app/session.h
+        services/userservice.h
+        services/userservice.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

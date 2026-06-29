@@ -8,6 +8,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    AppContext context;          // erzeugt Database, Logger-Zugriff, Services
+
     a.setStyle("Fusion");
 
     QTranslator translator;
