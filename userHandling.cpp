@@ -1,9 +1,16 @@
 #include "userHandling.h"
 
-void programmStart(Database *dataBase) {
+int programmStart(Database *dataBase) {
     if (dataBase->adminExists()) {
-        // Loginseite
+
+
+        //ui->tabWidget->setCurrentIndex(0);
+
+
+        return 0;
+
     } else {
-        // Adminseite mit Parameter für role = admin
+        return 1;
+
     }
 }

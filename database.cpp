@@ -12,6 +12,17 @@ Database::~Database()
     }
 }
 
+
+/*
+ * Aufruf:
+ * dataBase.open("yourdailies.db","/database");
+ *
+ * Params:
+ * 1. DB Dateiname
+ * 2. Speicherpfad von "/" ausgehend
+ *
+ */
+
 bool Database::open(const QString& fileName, const QString& wantedPath) {
 
     QString path = QCoreApplication::applicationDirPath() + wantedPath;     // QString Objekt anlegen - QString für Ordnerpfad

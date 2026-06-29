@@ -5,8 +5,17 @@
 #include <QIcon>
 #include <QObject>
 
+/*
+ * Aufrufe:
+ *      Designer::styleAppBackground(ui->stackedWidget);    - für Gradient Background
+ *      Designer::passwordToggle(ui->login_password);       - Toggles für Passwordfields
+ *      Designer::passwordToggle(ui->register_password);
+ *      Designer::passwordToggle(ui->register_password_confirm);
+ */
 
-void Designer::styleAppBackground(QWidget *widget)
+
+
+
 {
     if (widget)
         widget->setStyleSheet("QStackedWidget#stackedWidget {background-color: qlineargradient("
