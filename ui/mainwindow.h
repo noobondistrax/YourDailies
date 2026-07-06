@@ -3,7 +3,7 @@
 
 #pragma once
 #include <QMainWindow>
-#include "database.h"
+#include "appcontext.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,11 +16,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(AppContext& appContext, QWidget *parent = nullptr);
     ~MainWindow() override;
 
 private:
     Ui::MainWindow *ui;
-    Database dataBase;
+
 };
 #endif // MAINWINDOW_H

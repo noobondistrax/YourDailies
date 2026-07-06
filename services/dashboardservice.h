@@ -3,6 +3,14 @@
 
 #pragma once
 
+class DashboardService
+{
+public:
+    DashboardService();
+    ~DashboardService();
 
+private:
+
+};
 
 #endif

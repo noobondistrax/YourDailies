@@ -3,6 +3,14 @@
 
 #pragma once
 
+class UserSession
+{
+public:
+    UserSession();
+    ~UserSession();
 
+private:
+
+};
 
 #endif

@@ -3,6 +3,14 @@
 
 #pragma once
 
+class WidgetService
+{
+public:
+    WidgetService();
+    ~WidgetService();
 
+private:
+
+};
 
 #endif

@@ -4,7 +4,7 @@
 #include "userHandling.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {

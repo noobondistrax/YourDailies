@@ -1,5 +1,5 @@
-#ifndef REGISTRATION_H
-#define REGISTRATION_H
+#ifndef REGISTERPAGE_H
+#define REGISTERPAGE_H
 
 #include <QWidget>
 
@@ -19,4 +19,4 @@ private:
     Ui::Registration *ui;
 };
 
-#endif // REGISTRATION_H
+#endif // REGISTERPAGE_H

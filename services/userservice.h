@@ -3,4 +3,14 @@
 
 #pragma once
 
+class UserService
+{
+public:
+    UserService();
+    ~UserService();
+
+private:
+
+};
+
 #endif // USERSERVICE_H

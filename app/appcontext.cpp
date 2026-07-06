@@ -2,10 +2,11 @@
 
 AppContext::AppContext()
 {
+
     Logger::instance().info("AppContext", "Initialisiere Anwendungskontext...");
 
-    if (!m_database.open("yourdailies.db")) {
-        Logger::instance().error("AppContext", "Datenbank konnte nicht geoeffnet werden");
+    if (!m_database.open("yourdailies.db","/database")) {
+        // Logger::instance().error("AppContext", "Datenbank konnte nicht geoeffnet werden");
     }
 
     // Einzige Stelle im Programm, an der Dienste erzeugt werden (R-08)
@@ -14,12 +15,14 @@ AppContext::AppContext()
     m_widgetService    = std::make_unique<WidgetService>(m_database);
 
     Logger::instance().info("AppContext", "Dienste erfolgreich erzeugt");
+
 }
 
 AppContext::~AppContext()
 {
     Logger::instance().info("AppContext", "Anwendung wird beendet");
 }
+
 
 UserSession& AppContext::session()
 {

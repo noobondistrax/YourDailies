@@ -16,13 +16,18 @@ set(TS_FILES YourDailies_de_DE.ts)
 
 set(PROJECT_SOURCES
     main.cpp
-    resources.qrc
     app/appcontext.h
     app/appcontext.cpp
     app/usersession.h
     app/usersession.cpp
+    repository/dashboardRepository.h
+    repository/dashboardRepository.cpp
     repository/database.cpp
     repository/database.h
+    repository/userRepository.h
+    repository/userRepository.cpp
+    repository/widgetRepository.h
+    repository/widgetRepository.cpp
     services/dashboardservice.h
     services/dashboardservice.cpp
     services/userservice.h
@@ -34,11 +39,10 @@ set(PROJECT_SOURCES
     ui/mainwindow.cpp
     ui/mainwindow.h
     ui/mainwindow.ui
-    ui/registration.h
-    ui/registration.cpp
-    ui/registration.ui
-    ui/userHandling.cpp
-    ui/userHandling.h
+    ui/registerPage.h
+    ui/registerPage.cpp
+    ui/registerPage.ui
+    ui/resources.qrc
     utils/globals.h
     utils/logger.h
     utils/logger.cpp
@@ -50,8 +54,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(YourDailies
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        services/userservice.h
-        services/userservice.cpp
+        ui/loginpage.h ui/loginpage.cpp ui/loginpage.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -76,7 +79,7 @@ else()
 endif()
 
 target_link_libraries(YourDailies PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_include_directories(YourDailies PRIVATE sqlite ui repository app utils models servcies)
+target_include_directories(YourDailies PRIVATE sqlite ui repository app utils models services)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
