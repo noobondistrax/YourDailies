@@ -2,11 +2,10 @@
 
 AppContext::AppContext()
 {
-
-    Logger::instance().info("AppContext", "Initialisiere Anwendungskontext...");
+    Logger::instance().log(LogLevel::Info, "Programm gestartet");
 
     if (!m_database.open("yourdailies.db","/database")) {
-        // Logger::instance().error("AppContext", "Datenbank konnte nicht geoeffnet werden");
+        Logger::instance().log(LogLevel::Error, "Datenbank konnte nicht geoeffnet werden");
     }
 
     // Einzige Stelle im Programm, an der Dienste erzeugt werden (R-08)
@@ -14,13 +13,13 @@ AppContext::AppContext()
     m_dashboardService = std::make_unique<DashboardService>(m_database);
     m_widgetService    = std::make_unique<WidgetService>(m_database);
 
-    Logger::instance().info("AppContext", "Dienste erfolgreich erzeugt");
+    Logger::instance().log(LogLevel::Info, "Dienste erfolgreich erzeugt");
 
 }
 
 AppContext::~AppContext()
 {
-    Logger::instance().info("AppContext", "Anwendung wird beendet");
+    Logger::instance().log(LogLevel::Info, "Anwendung wird beendet");
 }
 
 
@@ -33,15 +32,13 @@ UserSession& AppContext::session()
 void AppContext::startSession(UserSession session)
 {
     m_session = std::move(session);
-    Logger::instance().info("AppContext",
-                            "UserSession gestartet fuer User: " + m_session->user().username());
+    Logger::instance().log(LogLevel::Info,"UserSession gestartet fuer User: " + m_session->user().username());
 }
 
 void AppContext::endSession()
 {
     if (m_session) {
-        Logger::instance().info("AppContext",
-                                "UserSession beendet fuer User: " + m_session->user().username());
+        Logger::instance().log(LogLevel::Info,"UserSession beendet fuer User: " + m_session->user().username());
     }
     m_session.reset();
 }

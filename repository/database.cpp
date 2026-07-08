@@ -234,6 +234,7 @@ void Database::createAppointmentParticipantsTable() {
 void Database::createAuditLogsTable() {
     const char* sql = "CREATE TABLE IF NOT EXISTS audit_logs ("
                       "log_id INTEGER PRIMARY KEY, "
+                      "dateTime TEXT, "
                       "user_id INTEGER, "
                       "action_type TEXT, "
                       "target_type TEXT, "

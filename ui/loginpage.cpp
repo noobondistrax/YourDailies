@@ -1,14 +1,18 @@
 #include "loginpage.h"
-#include "ui_loginpage.h"
+#include "ui/ui_loginpage.h"
+#include "designer.h"
 
-loginPage::loginPage(QWidget *parent)
+LoginPage::LoginPage(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::loginPage)
+    , ui(new Ui::LoginPage)
 {
     ui->setupUi(this);
+
+    Designer::passwordToggle(ui->login_password);
 }
 
-loginPage::~loginPage()
+LoginPage::~LoginPage()
 {
     delete ui;
 }
+

@@ -1,7 +1,5 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include "designer.h"
-#include "userHandling.h"
+#include "ui/ui_mainwindow.h"
 
 
 MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
@@ -11,16 +9,6 @@ MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
     ui->setupUi(this);
 
     setFixedSize(size());
-
-    // Designer::styleAppBackground(ui->stackedWidget);
-    // Designer::passwordToggle(ui->login_password);
-    // Designer::passwordToggle(ui->register_password);
-    // Designer::passwordToggle(ui->register_password_confirm);
-
-    // dataBase.open("yourdailies.db","/database");
-
-    // programmStart(dataBase);
-
 }
 
 MainWindow::~MainWindow()

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Registration</class>
- <widget class="QWidget" name="Registration">
+ <class>RegisterPage</class>
+ <widget class="QWidget" name="RegisterPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -95,7 +95,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../resources.qrc">:/logo/img/logo.png</pixmap>
+    <pixmap resource="../img/resources.qrc">:/logo/logo.png</pixmap>
    </property>
   </widget>
   <widget class="QLineEdit" name="register_name">
@@ -333,9 +333,22 @@ background-color: rgb(206, 206, 206);</string>
     <string>example@mail.com</string>
    </property>
   </widget>
+  <zorder>register_password_label</zorder>
+  <zorder>register_name_label</zorder>
+  <zorder>register_email_confirm_label</zorder>
+  <zorder>register_name</zorder>
+  <zorder>register_email_label</zorder>
+  <zorder>register_subtitle</zorder>
+  <zorder>register_password</zorder>
+  <zorder>register_pB_register</zorder>
+  <zorder>register_password_confirm_label</zorder>
+  <zorder>register_email_confirm</zorder>
+  <zorder>register_password_confirm</zorder>
+  <zorder>register_email</zorder>
+  <zorder>label_2</zorder>
  </widget>
  <resources>
-  <include location="../resources.qrc"/>
+  <include location="../img/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

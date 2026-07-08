@@ -20,6 +20,8 @@ set(PROJECT_SOURCES
     app/appcontext.cpp
     app/usersession.h
     app/usersession.cpp
+    img/resources.qrc
+    log/log.csv
     repository/dashboardRepository.h
     repository/dashboardRepository.cpp
     repository/database.cpp
@@ -36,13 +38,15 @@ set(PROJECT_SOURCES
     services/widgetservice.cpp
     ui/designer.h
     ui/designer.cpp
-    ui/mainwindow.cpp
+    ui/loginpage.ui
+    ui/loginpage.h
+    ui/loginpage.cpp
     ui/mainwindow.h
+    ui/mainwindow.cpp
     ui/mainwindow.ui
-    ui/registerPage.h
-    ui/registerPage.cpp
-    ui/registerPage.ui
-    ui/resources.qrc
+    ui/registerpage.h
+    ui/registerpage.cpp
+    ui/registerpage.ui
     utils/globals.h
     utils/logger.h
     utils/logger.cpp
@@ -54,7 +58,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(YourDailies
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        ui/loginpage.h ui/loginpage.cpp ui/loginpage.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
