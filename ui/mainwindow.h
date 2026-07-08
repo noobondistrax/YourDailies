@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#pragma once
 #include <QMainWindow>
 #include "appcontext.h"
 
@@ -21,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void progStart(AppContext& context);
 
 };
 #endif // MAINWINDOW_H

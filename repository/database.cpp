@@ -48,7 +48,6 @@ bool Database::open(const QString& fileName, const QString& wantedPath) {
     createReminderTable();
     createAppointmentsTable();
     createAppointmentParticipantsTable();
-    createAuditLogsTable();
 
     return true;
 }
@@ -231,32 +230,6 @@ void Database::createAppointmentParticipantsTable() {
     m_tableStatus[tableNames::appointment_participants] = tableStatus::created;
 }
 
-void Database::createAuditLogsTable() {
-    const char* sql = "CREATE TABLE IF NOT EXISTS audit_logs ("
-                      "log_id INTEGER PRIMARY KEY, "
-                      "dateTime TEXT, "
-                      "user_id INTEGER, "
-                      "action_type TEXT, "
-                      "target_type TEXT, "
-                      "target_id TEXT, "
-                      "created_at TEXT, "
-                      "details TEXT, "
-                      "FOREIGN KEY (user_id) REFERENCES users(user_id)"
-                      ");";
-
-    char* errMsg = nullptr;
-    int rc = sqlite3_exec(m_db, sql, nullptr, nullptr, &errMsg);
-
-    if (rc != SQLITE_OK) {
-        qDebug() << "Fehler beim Erstellen der 'audit_logs' Tabelle:" << errMsg;
-        m_tableStatus[tableNames::audit_logs] = tableStatus::failed;
-        sqlite3_free(errMsg);
-        return;
-    }
-
-    qDebug() << "'audit_logs' Tabelle erfolgreich erstellt (oder existierte schon)!";
-    m_tableStatus[tableNames::audit_logs] = tableStatus::created;
-}
 
 // use for example: if (db.isTableRunning(Database::tableNames::appointments, Database::tableStatus::created)) {}
 bool Database::dbTableStatus(tableNames name,tableStatus status) {

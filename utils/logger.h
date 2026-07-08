@@ -1,11 +1,9 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#pragma once
-
 #include <QString>
 
-const QString& filePath = "log/log.csv";
+const QString logFilePath123 = "log/log.csv";
 
 enum class LogLevel
 {
@@ -30,7 +28,7 @@ private:
     Logger& operator=(const Logger&) = delete;
 
     QString levelToString(LogLevel level) const;
-    void writeLog(const QString& value);
+    void writeLog(QString& value);
 };
 
 #endif // LOGGER

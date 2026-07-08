@@ -38,7 +38,7 @@ void Designer::passwordToggle(QLineEdit *lineEdit)
     lineEdit->setEchoMode(QLineEdit::Password);
 
     QAction *toggleAction = lineEdit->addAction(
-        QIcon(":/icons/img/eye_closed.png"),
+        QIcon(":/icons/eye_closed.png"),
         QLineEdit::TrailingPosition
         );
 
@@ -46,6 +46,6 @@ void Designer::passwordToggle(QLineEdit *lineEdit)
         bool hidden = (lineEdit->echoMode() == QLineEdit::Password);
 
         lineEdit->setEchoMode(hidden ? QLineEdit::Normal : QLineEdit::Password);
-        toggleAction->setIcon(QIcon(hidden ? ":/icons/img/eye_open.png" : ":/icons/img/eye_closed.png"));
+        toggleAction->setIcon(QIcon(hidden ? ":/icons/eye_open.png" : ":/icons/eye_closed.png"));
     });
 }

@@ -44,12 +44,12 @@ QString Logger::levelToString(LogLevel level) const
     return "UNKNOWN";
 }
 
-void writeLog(const QString& value) {
-    QFile file(filePath);
+void Logger::writeLog(QString& value) {
+    QFile file(logFilePath123);
 
     if (!file.open(QIODevice::Append | QIODevice::Text))
     {
-        qDebug() << "Datei konnte nicht geöffnet werden:" << filePath;
+        qDebug() << "Datei konnte nicht geöffnet werden:" << logFilePath123;
     }
 
     QTextStream out(&file);

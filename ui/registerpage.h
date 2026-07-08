@@ -2,6 +2,7 @@
 #define REGISTERPAGE_H
 
 #include <QWidget>
+#include "globals.h"
 
 namespace Ui {
 class RegisterPage;

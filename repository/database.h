@@ -2,9 +2,11 @@
 #define DATABASE_H
 
 #pragma once
-#include "sqlite3.h"
+#include <QString>
+#include <QCoreApplication>
+#include <QDir>
 #include <QMap>
-#include "globals.h"
+#include "sqlite3.h"
 
 class Database
 {
@@ -16,8 +18,7 @@ public:
         user_widgets,
         reminders,
         appointments,
-        appointment_participants,
-        audit_logs
+        appointment_participants
     };
 
     enum class tableStatus {

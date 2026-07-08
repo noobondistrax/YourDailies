@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(148, 148, 148);</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -62,7 +62,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -115,7 +116,8 @@ background-color: rgb(206, 206, 206);</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -234,6 +236,13 @@ color: rgb(255, 255, 255);</string>
   <zorder>login_pB_register_3</zorder>
   <zorder>label</zorder>
  </widget>
+ <tabstops>
+  <tabstop>login_mail</tabstop>
+  <tabstop>login_password</tabstop>
+  <tabstop>login_pB_register_2</tabstop>
+  <tabstop>login_pB_register</tabstop>
+  <tabstop>login_pB_register_3</tabstop>
+ </tabstops>
  <resources>
   <include location="../img/resources.qrc"/>
  </resources>

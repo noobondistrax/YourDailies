@@ -1,8 +1,6 @@
 #ifndef APPCONTEXT_H
 #define APPCONTEXT_H
 
-#pragma once
-
 #include <memory>
 #include <optional>
 
@@ -30,6 +28,7 @@ public:
     UserSession& session();              // Zugriff nur wenn eingeloggt
     void startSession(UserSession session);
     void endSession();
+    bool adminExists();
 
 private:
     Database m_database;

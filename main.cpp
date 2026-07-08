@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    AppContext appContext;          // erzeugt Database, Logger-Zugriff, Services
+    AppContext appContext;
 
     a.setStyle("Fusion");
 
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    MainWindow w;
+    MainWindow w(appContext);
     w.show();
     return QApplication::exec();
 }

@@ -1,13 +1,11 @@
 #ifndef DASHBOARDSERVICE_H
 #define DASHBOARDSERVICE_H
 
-#pragma once
-
 class DashboardService
 {
 public:
-    DashboardService();
-    ~DashboardService();
+    DashboardService() = default;
+    ~DashboardService() = default;
 
 private:
 

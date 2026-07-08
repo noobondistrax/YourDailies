@@ -1,7 +1,6 @@
 #ifndef DESIGNER_H
 #define DESIGNER_H
 
-#pragma once
 #include <QWidget>
 
 class QLineEdit;

@@ -15,4 +15,3 @@ LoginPage::~LoginPage()
 {
     delete ui;
 }
-

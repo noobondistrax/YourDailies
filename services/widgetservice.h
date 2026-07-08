@@ -1,13 +1,11 @@
 #ifndef WIDGETSERVICE_H
 #define WIDGETSERVICE_H
 
-#pragma once
-
 class WidgetService
 {
 public:
-    WidgetService();
-    ~WidgetService();
+    WidgetService() = default;
+    ~WidgetService() = default;
 
 private:
 

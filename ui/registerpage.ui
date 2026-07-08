@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(148, 148, 148);</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="register_password_label">
    <property name="geometry">
@@ -109,7 +109,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -185,7 +186,8 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -257,7 +259,8 @@ background-color: rgb(206, 206, 206);</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -285,7 +288,8 @@ background-color: rgb(206, 206, 206);</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -316,7 +320,8 @@ background-color: rgb(206, 206, 206);</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="toolTip">
@@ -347,6 +352,14 @@ background-color: rgb(206, 206, 206);</string>
   <zorder>register_email</zorder>
   <zorder>label_2</zorder>
  </widget>
+ <tabstops>
+  <tabstop>register_name</tabstop>
+  <tabstop>register_email</tabstop>
+  <tabstop>register_email_confirm</tabstop>
+  <tabstop>register_password</tabstop>
+  <tabstop>register_password_confirm</tabstop>
+  <tabstop>register_pB_register</tabstop>
+ </tabstops>
  <resources>
   <include location="../img/resources.qrc"/>
  </resources>
