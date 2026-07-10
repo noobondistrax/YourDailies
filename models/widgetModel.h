@@ -9,10 +9,12 @@ struct WidgetModel {
     QString wPluginName;
     QString wDesc;
     bool wIsActive;
-    int wPosX;                  // Morgen weitermachen!!!!!
-    int wPosY;                  // wie verknüpfen mit user_widgets???????
-    int wSizeX;                 // Plus noch die anderen Daten aus user_widgets????
-    int wSizeY;
+    bool wIsVisible;
+    int wPosX;
+    int wPosY;
+    int wWidth;
+    int wHeight;
+    QString wConfig;
 };
 
 #endif // WIDGETMODEL_H

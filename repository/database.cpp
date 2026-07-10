@@ -41,7 +41,6 @@ bool Database::open(const QString& fileName, const QString& wantedPath) {
     qDebug() << "Datenbank erfolgreich geöffnet!";
 
     createUsersTable();
-    createUsersTable();
     createUserSettingsTable();
     createWidgetsTable();
     createUserWidgetsTabele();
@@ -135,7 +134,6 @@ void Database::createUserWidgetsTabele() {
                       "position_y INTEGER, "
                       "width INTEGER, "
                       "height INTEGER, "
-                      "sort_order TEXT, "
                       "FOREIGN KEY (user_id) REFERENCES users(user_id), "
                       "FOREIGN KEY (widget_id) REFERENCES widgets(widget_id)"
                       ");";
@@ -229,7 +227,6 @@ void Database::createAppointmentParticipantsTable() {
     qDebug() << "'appointments' Tabelle erfolgreich erstellt (oder existierte schon)!";
     m_tableStatus[tableNames::appointment_participants] = tableStatus::created;
 }
-
 
 // use for example: if (db.isTableRunning(Database::tableNames::appointments, Database::tableStatus::created)) {}
 bool Database::dbTableStatus(tableNames name,tableStatus status) {

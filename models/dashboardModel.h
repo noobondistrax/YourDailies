@@ -4,8 +4,6 @@
 #include <vector>
 
 struct DashboardModel {
-    int dashID;
-    int uID;
     std::vector<int> dashWidgetList;
 };
 

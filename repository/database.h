@@ -33,6 +33,7 @@ public:
     bool open(const QString& fileName, const QString& wantedPath);
     bool dbTableStatus(tableNames,tableStatus);
     bool adminExists();
+    sqlite3* connection() const { return m_db; }
 
 
 private:

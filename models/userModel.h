@@ -4,7 +4,7 @@
 #include <QString>
 
 struct UserModel {
-    int uID;
+    QString uID;
     QString uName;
     QString uMail;
     QString uPwHash;
