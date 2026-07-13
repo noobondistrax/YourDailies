@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "appcontext.h"
+#include "dashboardpage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
