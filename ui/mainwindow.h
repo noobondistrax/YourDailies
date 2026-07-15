@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "appcontext.h"
 #include "dashboardpage.h"
+#include "widgetModel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(AppContext& appContext, QWidget *parent = nullptr);
     ~MainWindow() override;
+
 
 private:
     Ui::MainWindow *ui;

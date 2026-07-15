@@ -3,9 +3,10 @@
 
 #include <QWidget>
 
-namespace Ui {
-class DashboardPage;
-}
+// for testing
+#include <QList>
+#include "widgetModel.h"
+
 
 class DashboardPage : public QWidget
 {
@@ -16,7 +17,8 @@ public:
     ~DashboardPage();
 
 private:
-    Ui::DashboardPage *ui;
+    void buildWidgets();
+    QList<WidgetModel> m_data;
 };
 
 #endif // DASHBOARDPAGE_H

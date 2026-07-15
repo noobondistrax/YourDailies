@@ -1,30 +1,6 @@
-#include "dashboardpage.h"
-#include "dashboardcanvas.h"
-#include <QScrollArea>
-#include <QVBoxLayout>
+#include "testing.h"
 
-DashboardPage::DashboardPage(QWidget *parent)
-    : QWidget(parent)
-{
-    // attention - parameter 1 have to be changed!!!!!!!!
-    buildWidgets(); // only for testing
-
-    auto *canvas = new DashboardCanvas(m_data, this);
-
-    auto *scrollArea = new QScrollArea(this);
-    scrollArea->setWidget(canvas);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-
-    auto *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(scrollArea);
-}
-
-DashboardPage::~DashboardPage() = default;
-
-void DashboardPage::buildWidgets() {
+QList<WidgetModel> buildWidgets() {
     // Function to fill m_data with users Widgetlist or take usersList - why dublicate given list?
 
     WidgetModel model1;
@@ -90,4 +66,6 @@ void DashboardPage::buildWidgets() {
     model8.wWidth = 1;
     model8.wHeight = 1;
     m_data.append(model8);
+
+    return m_data;
 }

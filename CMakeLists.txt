@@ -62,7 +62,10 @@ set(PROJECT_SOURCES
     utils/globals.h
     utils/logger.h
     utils/logger.cpp
+    utils/testing.cpp
+    utils/testing.h
     sqlite/sqlite3.c
+
     ${TS_FILES}
 )
 
@@ -71,6 +74,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         img/resources.qrc
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET YourDailies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

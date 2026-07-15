@@ -3,7 +3,6 @@
 #include "loginpage.h"
 #include "registerpage.h"
 #include "dashboardpage.h"
-//#include "globals.h"
 
 
 MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
@@ -16,7 +15,6 @@ MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
     setFixedSize(size());
 
     // progStart(appContext);
-
 
     auto *firstpage = new DashboardPage();
     ui->stackedWidget->addWidget(firstpage);
@@ -40,3 +38,4 @@ void MainWindow::progStart(AppContext& context) {
         ui->stackedWidget->setCurrentWidget(registerpage);
     }
 }
+

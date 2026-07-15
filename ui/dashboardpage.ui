@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="DashboardCanvas" name="widget" native="true">
+  <widget class="dashboardcanvas" name="widget" native="true">
    <property name="geometry">
     <rect>
      <x>-1</x>
@@ -26,7 +26,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DashboardCanvas</class>
+   <class>dashboardcanvas</class>
    <extends>QWidget</extends>
    <header>dashboardcanvas.h</header>
    <container>1</container>

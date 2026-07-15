@@ -2,10 +2,10 @@
 #include <QVBoxLayout>
 #include <QMouseEvent>
 
-WidgetContainer::WidgetContainer(const QString &labelText, QWidget *parent)
+WidgetContainer::WidgetContainer(QString widgetName, QWidget *parent)
     : QFrame(parent)
 {
-    m_label = new QLabel(labelText, this);
+    m_label = new QLabel(widgetName, this);
     m_label->setAlignment(Qt::AlignCenter);
 
     setStyleSheet(R"(

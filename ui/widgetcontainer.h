@@ -4,11 +4,12 @@
 #include <QFrame>
 #include <QLabel>
 #include <QPoint>
+#include "widgetModel.h"
 
 class WidgetContainer : public QFrame {
     Q_OBJECT
 public:
-    explicit WidgetContainer(const QString &labelText, QWidget *parent = nullptr);
+    explicit WidgetContainer(QString widgetName, QWidget *parent = nullptr);
 
 signals:
     void dragStarted(WidgetContainer *widget);
