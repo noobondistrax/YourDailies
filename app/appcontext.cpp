@@ -1,4 +1,5 @@
 #include "appcontext.h"
+#include "logger.h"
 
 AppContext::AppContext()
 {
@@ -9,9 +10,13 @@ AppContext::AppContext()
     }
 
     // Einzige Stelle im Programm, an der Dienste erzeugt werden (R-08)
-    // m_userService      = std::make_unique<UserService>(m_database);
-    // m_dashboardService = std::make_unique<DashboardService>(m_database);
-    // m_widgetService    = std::make_unique<WidgetService>(m_database);
+    // m_userRepository = std::make_unique<UserRepository>(m_database);
+    // m_userService      = std::make_unique<UserService>(m_userRepository);
+    // m_dashboardRepository = std::make_unique<DashboardRepository>(m_database);
+    // m_dashboardService = std::make_unique<DashboardService>(m_dashboardRepository);
+    m_widgetRepository = std::make_unique<WidgetRepository>(m_database);
+
+    m_widgetService    = std::make_unique<WidgetService>(m_widgetRepository);
 
     Logger::instance().log(LogLevel::Info, "Dienste erfolgreich erzeugt");
 

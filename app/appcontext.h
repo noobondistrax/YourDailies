@@ -5,10 +5,12 @@
 #include <optional>
 
 #include "database.h"
-#include "logger.h"
 #include "usersession.h"
+#include "userRepository.h"
 #include "userservice.h"
+#include "dashboardRepository.h"
 #include "dashboardservice.h"
+#include "widgetRepository.h"
 #include "widgetservice.h"
 
 class AppContext
@@ -18,10 +20,13 @@ public:
     ~AppContext();
 
     // -- Dienste: AppContext besitzt sie, gibt aber nur Referenzen heraus --
-    Database&           database()          { return m_database; }
-    UserService&        userService()       { return *m_userService; }
-    DashboardService&   dashboardService()  { return *m_dashboardService; }
-    WidgetService&      widgetService()     { return *m_widgetService; }
+    Database&               database()          { return m_database; }
+    UserRepository&         userRepository()    { return *m_userRepository; }
+    UserService&            userService()       { return *m_userService; }
+    //DashboardRepository&    dashboardService()  { return *m_dashboardRepository; }
+    //DashboardService&       dashboardService()  { return *m_dashboardService; }
+    WidgetRepository&       widgetRepository()  { return *m_widgetRepository; }
+    WidgetService&          widgetService()     { return *m_widgetService; }
 
     // -- UserSession: existiert erst NACH erfolgreichem Login --
     bool hasActiveSession() const { return m_session.has_value(); }
@@ -33,8 +38,11 @@ public:
 private:
     Database m_database;
 
+    std::unique_ptr<UserRepository> m_userRepository;
     std::unique_ptr<UserService> m_userService;
+    std::unique_ptr<DashboardRepository> m_dashboardRepository;
     std::unique_ptr<DashboardService> m_dashboardService;
+    std::unique_ptr<WidgetRepository> m_widgetRepository;
     std::unique_ptr<WidgetService> m_widgetService;
 
     std::optional<UserSession> m_session;

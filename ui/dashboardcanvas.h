@@ -19,7 +19,8 @@ private slots:
     void onDragFinished(WidgetContainer *widget, const QPoint &globalPos);
 
 private:
-    void loadData();
+    // void loadData();
+    int cellWidthPx() const;
     void reflow();
     void updateContentHeight();
     int findCollision(const QRect &rect, int excludeIndex) const;
@@ -28,6 +29,7 @@ private:
     QPoint findFirstFit(int excludeIndex, int w, int h) const;
     void moveWidgetTo(int draggedIndex, QPoint targetCell);
     void placeNewWidget(WidgetModel&);
+    void onResizeFinished(WidgetContainer *widget, const QSize &newSize);
     WidgetContainer* createContainerFor(const WidgetModel &model);
     void createContainersFromExistingData();
 

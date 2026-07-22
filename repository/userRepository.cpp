@@ -1,5 +1,6 @@
 #include "userRepository.h"
 
+
 std::optional<UserModel> UserRepository::loadByMail(const QString& mail) {
     const char* sql = "SELECT user_id, username, email, password_hash, role, status, requested_at, confirmed_at"
                       "FROM users WHERE email = ? LIMIT 1;";

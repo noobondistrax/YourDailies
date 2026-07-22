@@ -12,11 +12,16 @@ DashboardCanvas::DashboardCanvas(QList<WidgetModel> &widgets, QWidget *parent)
 }
 
 
+int DashboardCanvas::cellWidthPx() const
+{
+    return (width() - m_spacing * (m_columns + 1)) / m_columns;
+}
+
 void DashboardCanvas::reflow()
 {
     if (m_data.isEmpty()) return;
 
-    const int cellWidth = (width() - m_spacing * (m_columns + 1)) / m_columns;
+    const int cellWidth = cellWidthPx();
 
     for (int i = 0; i < m_data.size(); ++i) {
         const WidgetModel &model = m_data.at(i);
@@ -133,7 +138,7 @@ void DashboardCanvas::moveWidgetTo(int draggedIndex, QPoint targetCell)
 //Important: changes at reflow must also changed in cellAt!
 QPoint DashboardCanvas::cellAt(const QPoint &canvasPos) const
 {
-    const int cellWidth = (width() - m_spacing * (m_columns + 1)) / m_columns;
+    const int cellWidth = cellWidthPx();
 
     int column = canvasPos.x() / (cellWidth + m_spacing);
     int row    = canvasPos.y() / (m_cellHeight + m_spacing);
@@ -175,6 +180,61 @@ void DashboardCanvas::onDragFinished(WidgetContainer *widget, const QPoint &glob
     moveWidgetTo(draggedIndex, targetCell);
 }
 
+void DashboardCanvas::onResizeFinished(WidgetContainer *widget, const QSize &newSize)
+{
+    const int index = m_containers.indexOf(widget);
+    if (index == -1) return;
+
+    const int cellWidth = cellWidthPx();
+
+    // Umkehrung der Formel aus reflow():
+    // pixelWidth = wWidth * cellWidth + (wWidth - 1) * spacing  =>  wWidth = (pixelWidth + spacing) / (cellWidth + spacing)
+    int newW = qRound((newSize.width()  + m_spacing) / double(cellWidth    + m_spacing));
+    int newH = qRound((newSize.height() + m_spacing) / double(m_cellHeight + m_spacing));
+
+    // Mindestgröße 1x1 Zelle
+    newW = qMax(1, newW);
+    newH = qMax(1, newH);
+
+    WidgetModel &model = m_data[index];
+
+    // Widget darf nicht über den rechten Grid-Rand wachsen
+    newW = qMin(newW, m_columns - model.wPosX);
+
+    if (newW == model.wWidth && newH == model.wHeight) {
+        // Keine echte Größenänderung - Container wieder exakt auf die gespeicherte Geometrie einrasten
+        // (das freie resize() während des Ziehens hat die Pixelgröße ja bereits verändert)
+        reflow();
+        return;
+    }
+
+    const QRect targetRect(model.wPosX, model.wPosY, newW, newH);
+
+    // Blocker ermitteln, bevor die neue Größe ins Model geschrieben wird
+    QList<int> blockers;
+    for (int i = 0; i < m_data.size(); ++i) {
+        if (i == index) continue;
+        if (rectOf(m_data.at(i)).intersects(targetRect))
+            blockers.append(i);
+    }
+
+    model.wWidth = newW;
+    model.wHeight = newH;
+
+    // Der Grip sitzt unten rechts - Wachstum drängt Nachbarn also immer nach rechts/unten weg
+    const QPoint growthDirection(1, 1);
+    for (int blockerIndex : blockers) {
+        if (!tryPush(blockerIndex, growthDirection)) {
+            const WidgetModel &blocker = m_data.at(blockerIndex);
+            const QPoint fallback = findFirstFit(blockerIndex, blocker.wWidth, blocker.wHeight);
+            m_data[blockerIndex].wPosX = fallback.x();
+            m_data[blockerIndex].wPosY = fallback.y();
+        }
+    }
+
+    reflow();
+}
+
 WidgetContainer* DashboardCanvas::createContainerFor(const WidgetModel &model)
 {
     auto *container = new WidgetContainer(model.wName, this);
@@ -183,6 +243,8 @@ WidgetContainer* DashboardCanvas::createContainerFor(const WidgetModel &model)
 
     connect(container, &WidgetContainer::dragFinished,
             this, &DashboardCanvas::onDragFinished);
+    connect(container, &WidgetContainer::resizeFinished,
+            this, &DashboardCanvas::onResizeFinished);
 
     return container;
 }
