@@ -2,6 +2,7 @@
 #define DASHBOARDPAGE_H
 
 #include <QWidget>
+#include "appcontext.h"
 
 // for testing
 #include <QList>
@@ -13,7 +14,7 @@ class DashboardPage : public QWidget
     Q_OBJECT
 
 public:
-    explicit DashboardPage(QWidget *parent = nullptr);
+    explicit DashboardPage(AppContext& context, QWidget *parent = nullptr);
     ~DashboardPage();
 
 private:

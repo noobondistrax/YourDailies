@@ -5,3 +5,8 @@ WidgetService::WidgetService(WidgetRepository& wr)
 {
 
 }
+
+bool WidgetService::widgetSavePosSize(const QList<WidgetModel> &wm) {
+    if (wm.isEmpty() || !m_wr.saveUWidPosSize(wm)) { return false; }
+    return true;
+}

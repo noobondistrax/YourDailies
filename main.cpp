@@ -1,5 +1,5 @@
-#include "mainwindow.h"
 #include "appcontext.h"
+#include "mainwindow.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -8,8 +8,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    AppContext appContext;
 
     a.setStyle("Fusion");
 
@@ -22,7 +20,11 @@ int main(int argc, char *argv[])
             break;
         }
     }
+
+    AppContext appContext;
+
     MainWindow w(appContext);
     w.show();
+
     return QApplication::exec();
 }

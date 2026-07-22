@@ -3,13 +3,13 @@
 #include <QScrollArea>
 #include <QVBoxLayout>
 
-DashboardPage::DashboardPage(QWidget *parent)
+DashboardPage::DashboardPage(AppContext& context, QWidget *parent)
     : QWidget(parent)
 {
     // attention - parameter 1 have to be changed!!!!!!!!
     buildWidgets(); // only for testing
 
-    auto *canvas = new DashboardCanvas(m_data, this);
+    auto *canvas = new DashboardCanvas(conext, m_data, this);
 
     auto *scrollArea = new QScrollArea(this);
     scrollArea->setWidget(canvas);

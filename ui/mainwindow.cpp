@@ -16,7 +16,7 @@ MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
 
     // progStart(appContext);
 
-    auto *firstpage = new DashboardPage();
+    auto *firstpage = new DashboardPage(AppContext& context);
     ui->stackedWidget->addWidget(firstpage);
     ui->stackedWidget->setCurrentWidget(firstpage);
 

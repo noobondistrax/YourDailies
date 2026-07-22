@@ -1,8 +1,7 @@
 #include "dashboardcanvas.h"
 
-
-DashboardCanvas::DashboardCanvas(QList<WidgetModel> &widgets, QWidget *parent)
-    : QWidget(parent), m_data(widgets)
+DashboardCanvas::DashboardCanvas(AppContext& context, QList<WidgetModel> &widgets, QWidget *parent)
+    : m_context(context), QWidget(parent), m_data(widgets)
 {
     const int minWidth = m_columns * kMinCellWidth + m_spacing * (m_columns + 1);
     setMinimumWidth(minWidth);
@@ -178,6 +177,8 @@ void DashboardCanvas::onDragFinished(WidgetContainer *widget, const QPoint &glob
     const QPoint targetCell = cellAt(localPos);
 
     moveWidgetTo(draggedIndex, targetCell);
+
+    m_context.widgetService().widgetSavePosSize(m_data);
 }
 
 void DashboardCanvas::onResizeFinished(WidgetContainer *widget, const QSize &newSize)
@@ -233,6 +234,7 @@ void DashboardCanvas::onResizeFinished(WidgetContainer *widget, const QSize &new
     }
 
     reflow();
+    m_context.widgetService().widgetSavePosSize(m_data);
 }
 
 WidgetContainer* DashboardCanvas::createContainerFor(const WidgetModel &model)

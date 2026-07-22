@@ -1,17 +1,10 @@
 #include "widgetRepository.h"
-#include <sqlite3.h>
+#include "sqlite3.h"
 
 
-
-bool WidgetRepository::savePositions(const QList<WidgetModel> &widgets)
+bool WidgetRepository::saveUWidPosSize(const QList<WidgetModel> &widgets)
 {
-    if (widgets.isEmpty()) return true;   // nichts zu tun, kein Fehler
-
-    // ACHTUNG - Annahme: eure Database-Klasse gibt den rohen sqlite3-Handle heraus,
-    // z. B. über eine Methode wie Database::instance().handle().
-    // Ersetzt die folgende Zeile durch euren echten Zugriff.
-    sqlite3 *db = Database::instance().handle();
-
+    sqlite3 *db = m_db.connection();
     if (!db) return false;
 
     if (sqlite3_exec(db, "BEGIN TRANSACTION;", nullptr, nullptr, nullptr) != SQLITE_OK) {
@@ -20,7 +13,7 @@ bool WidgetRepository::savePositions(const QList<WidgetModel> &widgets)
 
     sqlite3_stmt *stmt = nullptr;
     const char *sql =
-        "UPDATE widgets SET pos_x = ?, pos_y = ?, width = ?, height = ? WHERE id = ?;";
+        "UPDATE user_widgets SET pos_x = ?, pos_y = ?, width = ?, height = ? WHERE user_widget_id = ?;";
 
     if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
         sqlite3_exec(db, "ROLLBACK;", nullptr, nullptr, nullptr);
@@ -32,7 +25,7 @@ bool WidgetRepository::savePositions(const QList<WidgetModel> &widgets)
         sqlite3_bind_int(stmt, 2, widget.wPosY);
         sqlite3_bind_int(stmt, 3, widget.wWidth);
         sqlite3_bind_int(stmt, 4, widget.wHeight);
-        sqlite3_bind_int(stmt, 5, widget.wID);
+        sqlite3_bind_int(stmt, 5, widget.wUID);
 
         if (sqlite3_step(stmt) != SQLITE_DONE) {
             // Ein einzelner Fehler verwirft die GESAMTE Transaktion - entweder
@@ -53,6 +46,5 @@ bool WidgetRepository::savePositions(const QList<WidgetModel> &widgets)
         sqlite3_exec(db, "ROLLBACK;", nullptr, nullptr, nullptr);
         return false;
     }
-
     return true;
 }

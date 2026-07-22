@@ -4,6 +4,7 @@
 #include <QString>
 
 struct WidgetModel {
+    int wUID;
     int wID;
     QString wName;
     QString wPluginName;
