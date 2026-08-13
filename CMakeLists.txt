@@ -29,8 +29,8 @@ set(PROJECT_SOURCES
     models/widgetModel.h
     repository/dashboardRepository.h
     repository/dashboardRepository.cpp
-    repository/database.cpp
     repository/database.h
+    repository/database.cpp
     repository/userRepository.h
     repository/userRepository.cpp
     repository/widgetRepository.h

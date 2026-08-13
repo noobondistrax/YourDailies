@@ -20,13 +20,13 @@ public:
     ~AppContext();
 
     // -- Dienste: AppContext besitzt sie, gibt aber nur Referenzen heraus --
-    Database&               database()          { return m_database; }
-    UserRepository&         userRepository()    { return *m_userRepository; }
-    UserService&            userService()       { return *m_userService; }
-    //DashboardRepository&    dashboardService()  { return *m_dashboardRepository; }
-    //DashboardService&       dashboardService()  { return *m_dashboardService; }
-    WidgetRepository&       widgetRepository()  { return *m_widgetRepository; }
-    WidgetService&          widgetService()     { return *m_widgetService; }
+    Database&               database()              { return m_database; }
+    UserRepository&         userRepository()        { return *m_userRepository; }
+    UserService&            userService()           { return *m_userService; }
+    DashboardRepository&    dashboardRepository()   { return *m_dashboardRepository; }
+    DashboardService&       dashboardService()      { return *m_dashboardService; }
+    WidgetRepository&       widgetRepository()      { return *m_widgetRepository; }
+    WidgetService&          widgetService()         { return *m_widgetService; }
 
     // -- UserSession: existiert erst NACH erfolgreichem Login --
     bool hasActiveSession() const { return m_session.has_value(); }

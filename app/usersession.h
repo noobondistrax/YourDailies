@@ -1,6 +1,8 @@
 #ifndef USERSESSION_H
 #define USERSESSION_H
 
+#include <QList>
+
 class UserSession
 {
 public:
@@ -8,7 +10,7 @@ public:
     ~UserSession() = default;
 
 private:
-
+    QList<WidgetModel> UserWidgetList;
 };
 
 #endif

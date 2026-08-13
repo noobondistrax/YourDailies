@@ -47,20 +47,32 @@ CMakeLists.txt.user*
 # Vim temporary files
 .*.swp
 
-# Visual Studio generated files
-*.ib_pdb_index
-*.idb
-*.ilk
-*.pdb
-*.sln
+# Visual Studio generated / user-specific files
+.vs/
 *.suo
-*.vcproj
-*vcproj.*.*.user
+*.user
+*.userosscache
+*.suo.user
+*.sln.docstates
+*.vspscc
+*.vssscc
 *.ncb
 *.sdf
 *.opensdf
-*.vcxproj
-*vcxproj.*
+*.ilk
+*.pdb
+*.idb
+*.ib_pdb_index
+
+# Build outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+
 
 # MinGW generated files
 *.Debug

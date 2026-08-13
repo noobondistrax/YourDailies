@@ -1,11 +1,10 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <QString>
-#include <QCoreApplication>
-#include <QDir>
-#include <QMap>
+#pragma once
 #include "sqlite3.h"
+#include <QMap>
+#include "globals.h"
 
 class Database
 {
@@ -17,7 +16,8 @@ public:
         user_widgets,
         reminders,
         appointments,
-        appointment_participants
+        appointment_participants,
+        audit_logs
     };
 
     enum class tableStatus {
@@ -32,7 +32,6 @@ public:
     bool open(const QString& fileName, const QString& wantedPath);
     bool dbTableStatus(tableNames,tableStatus);
     bool adminExists();
-    sqlite3* connection() const { return m_db; }
 
 
 private:

@@ -1,10 +1,17 @@
+
+
+
+/* ############################## WIRD GESTRICHEN !!! ############################## */
+# 123
+
 #ifndef DASHBOARDMODEL_H
 #define DASHBOARDMODEL_H
 
-#include <vector>
+#include <QList>
+#include "WidgetModel.h"
 
 struct DashboardModel {
-    std::vector<int> dashWidgetList;
+    QList<WidgetModel> UserWidgetList;
 };
 
 #endif // DASHBOARDMODEL_H
