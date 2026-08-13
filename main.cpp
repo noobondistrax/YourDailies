@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     AppContext appContext;
 
-    MainWindow w(appContext);
+    MainWindow w(AppContext& appContext);
     w.show();
 
     return QApplication::exec();
