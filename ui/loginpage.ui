@@ -43,8 +43,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
@@ -188,7 +188,7 @@ color: rgb(255, 255, 255);</string>
     <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="login_pB_register_2">
+  <widget class="QPushButton" name="login_pB_login">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -207,7 +207,7 @@ color: rgb(255, 255, 255);</string>
     <string>ANMELDEN</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="login_pB_register_3">
+  <widget class="QPushButton" name="login_pB_forget">
    <property name="geometry">
     <rect>
      <x>719</x>
@@ -218,8 +218,8 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
@@ -232,16 +232,16 @@ color: rgb(255, 255, 255);</string>
   <zorder>login_password</zorder>
   <zorder>login_mail_label</zorder>
   <zorder>register_subtitle</zorder>
-  <zorder>login_pB_register_2</zorder>
-  <zorder>login_pB_register_3</zorder>
+  <zorder>login_pB_login</zorder>
+  <zorder>login_pB_forget</zorder>
   <zorder>label</zorder>
  </widget>
  <tabstops>
   <tabstop>login_mail</tabstop>
   <tabstop>login_password</tabstop>
-  <tabstop>login_pB_register_2</tabstop>
+  <tabstop>login_pB_login</tabstop>
   <tabstop>login_pB_register</tabstop>
-  <tabstop>login_pB_register_3</tabstop>
+  <tabstop>login_pB_forget</tabstop>
  </tabstops>
  <resources>
   <include location="../img/resources.qrc"/>

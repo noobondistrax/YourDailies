@@ -37,6 +37,8 @@ UserSession& AppContext::session()
 void AppContext::startSession(UserSession session)
 {
     m_session = std::move(session);
+
+
     Logger::instance().log(LogLevel::Info,"UserSession gestartet fuer User: " + m_session->user().username());
 }
 

@@ -14,11 +14,11 @@ MainWindow::MainWindow(AppContext& appContext, QWidget *parent)
 
     setFixedSize(size());
 
-    // progStart(appContext);
+    progStart(appContext);
 
-    auto *firstpage = new DashboardPage(AppContext& context);
-    ui->stackedWidget->addWidget(firstpage);
-    ui->stackedWidget->setCurrentWidget(firstpage);
+    //auto *firstpage = new DashboardPage(AppContext& context);
+    //ui->stackedWidget->addWidget(firstpage);
+    //ui->stackedWidget->setCurrentWidget(firstpage);
 
 }
 

@@ -2,6 +2,7 @@
 #define USERSESSION_H
 
 #include <QList>
+#include "widgetModel.h"
 
 class UserSession
 {

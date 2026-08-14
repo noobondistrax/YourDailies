@@ -4,8 +4,10 @@
     {
       "hidden": true,
       "name": "Qt",
+      "toolchainFile": "C:/Program Files/Microsoft Visual Studio/18/Community/VC/vcpkg/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
-        "CMAKE_PREFIX_PATH": "$env{QTDIR}"
+        "CMAKE_PREFIX_PATH": "$env{QTDIR}",
+        "VCPKG_TARGET_TRIPLET": "x64-windows"
       },
       "vendor": {
         "qt-project.org/Qt": {

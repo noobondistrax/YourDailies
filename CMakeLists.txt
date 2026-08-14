@@ -10,55 +10,55 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(unofficial-sodium CONFIG REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 set(TS_FILES YourDailies_de_DE.ts)
 
 set(PROJECT_SOURCES
     main.cpp
-    app/appcontext.h
-    app/appcontext.cpp
-    app/usersession.h
-    app/usersession.cpp
+    # app/appcontext.h
+    # app/appcontext.cpp
+    # app/usersession.h
+    # app/usersession.cpp
     img/resources.qrc
     log/log.csv
-    models/dashboardModel.h
-    models/settings.h
-    models/userModel.h
-    models/userModel.cpp
-    models/widgetModel.h
-    repository/dashboardRepository.h
-    repository/dashboardRepository.cpp
-    repository/database.h
-    repository/database.cpp
-    repository/userRepository.h
-    repository/userRepository.cpp
-    repository/widgetRepository.h
-    repository/widgetRepository.cpp
-    services/dashboardservice.h
-    services/dashboardservice.cpp
-    services/userservice.h
-    services/userservice.cpp
-    services/widgetservice.h
-    services/widgetservice.cpp
-    ui/dashboardcanvas.h
-    ui/dashboardcanvas.cpp
-    ui/dashboardpage.ui
-    ui/dashboardpage.h
-    ui/dashboardpage.cpp
-    ui/designer.h
-    ui/designer.cpp
-    ui/loginpage.ui
-    ui/loginpage.h
-    ui/loginpage.cpp
-    ui/mainwindow.h
-    ui/mainwindow.cpp
-    ui/mainwindow.ui
-    ui/registerpage.h
-    ui/registerpage.cpp
-    ui/registerpage.ui
-    ui/widgetcontainer.h
-    ui/widgetcontainer.cpp
+    # models/dashboardModel.h
+    # models/settings.h
+    # models/userModel.h
+    # models/widgetModel.h
+    # repository/dashboardRepository.h
+    # repository/dashboardRepository.cpp
+    # repository/database.h
+    # repository/database.cpp
+    # repository/userRepository.h
+    # repository/userRepository.cpp
+    # repository/widgetRepository.h
+    # repository/widgetRepository.cpp
+    # services/dashboardservice.h
+    # services/dashboardservice.cpp
+    # services/userservice.h
+    # services/userservice.cpp
+    # services/widgetservice.h
+    # services/widgetservice.cpp
+    # ui/dashboardcanvas.h
+    # ui/dashboardcanvas.cpp
+    # ui/dashboardpage.ui
+    # ui/dashboardpage.h
+    # ui/dashboardpage.cpp
+    # ui/designer.h
+    # ui/designer.cpp
+    # ui/loginpage.ui
+    # ui/loginpage.h
+    # ui/loginpage.cpp
+    # ui/mainwindow.h
+    # ui/mainwindow.cpp
+    # ui/mainwindow.ui
+    # ui/registerpage.h
+    # ui/registerpage.cpp
+    # ui/registerpage.ui
+    # ui/widgetcontainer.h
+    # ui/widgetcontainer.cpp
     utils/globals.h
     utils/logger.h
     utils/logger.cpp
@@ -98,7 +98,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(YourDailies PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(YourDailies PRIVATE Qt${QT_VERSION_MAJOR}::Widgets unofficial-sodium::sodium)
 target_include_directories(YourDailies PRIVATE sqlite ui repository app utils models services)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
