@@ -6,6 +6,7 @@
 struct Settings {
     QString theme;
     QString language;
+    QString config_json;
 };
 
 #endif // SETTINGS_H

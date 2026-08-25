@@ -17,7 +17,7 @@ std::optional<UserModel> UserRepository::loadByMail(const QString& mail) {
     
     UserModel user;
     if (sqlite3_step(stmt) == SQLITE_ROW) {
-        user.uID        = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+        user.uID        = sqlite3_column_int(stmt, 0);
         user.uName      = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
         user.uMail      = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
         user.uPwHash    = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));

@@ -45,7 +45,8 @@ private:
     std::unique_ptr<WidgetRepository> m_widgetRepository;
     std::unique_ptr<WidgetService> m_widgetService;
 
-    std::optional<UserSession> m_session;
+    UserSession m_session;
+    //UserSession& session;
 };
 
 #endif // APPCONTEXT_H

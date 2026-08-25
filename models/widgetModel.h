@@ -15,7 +15,6 @@ struct WidgetModel {
     int wPosY;
     int wWidth;
     int wHeight;
-    QString wConfig;
 };
 
 #endif // WIDGETMODEL_H

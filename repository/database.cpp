@@ -83,6 +83,7 @@ void Database::createUserSettingsTable() {
                       "theme TEXT, "
                       "language TEXT, "
                       "timezone TEXT, "
+                      "config_json TEXT, "
                       "FOREIGN KEY (user_id) REFERENCES users(user_id)"
                       ");";
 
@@ -129,7 +130,6 @@ void Database::createUserWidgetsTabele() {
                       "user_id INTEGER, "
                       "widget_id INTEGER, "
                       "is_visible INTEGER, "
-                      "config_json TEXT, "
                       "pos_x INTEGER, "
                       "pos_y INTEGER, "
                       "width INTEGER, "

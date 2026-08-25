@@ -2,23 +2,20 @@
 #define DASHBOARDPAGE_H
 
 #include <QWidget>
-
-// for testing
 #include <QList>
 #include "widgetModel.h"
-
+#include "widgetservice.h"
 
 class DashboardPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DashboardPage(QWidget *parent = nullptr);
+    explicit DashboardPage(QList<WidgetModel> &widgets, WidgetService& widgetService, QWidget *parent = nullptr);
     ~DashboardPage();
 
 private:
     void buildWidgets();
-    QList<WidgetModel> m_data;
 };
 
 #endif // DASHBOARDPAGE_H

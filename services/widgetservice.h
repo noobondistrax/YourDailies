@@ -11,9 +11,12 @@ public:
     ~WidgetService() = default;
 
     bool widgetSavePosSize(const QList<WidgetModel> &wm);
+    std::optional<QList<WidgetModel>> getWidgets(int userId);
+
 
 private:
     WidgetRepository m_wr;
+    
 };
 
 

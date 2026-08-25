@@ -4,17 +4,19 @@
 #include <QString>
 #include "appcontext.h"
 #include "userRepository.h"
+#include "widgetservice.h"
 
 class UserService
 {
 public:
-    explicit UserService(UserRepository& m_userRepository);
+    explicit UserService(UserRepository& userRepository, WidgetService& widgetService);
     ~UserService() = default;
 
 	bool login(const QString& email, const QString& password, UserSession& outSession);
 
 private:
 	UserRepository& m_userRepository;
+	WidgetService& m_widgetService;
 
     bool verifyPassword(const QString& password, const QString& hash) const;
 

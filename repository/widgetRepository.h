@@ -11,7 +11,7 @@ public:
     explicit WidgetRepository(Database& db) : m_db(db) {}
 
     bool saveUWidPosSize(const QList<WidgetModel> &widgets);
-    QList<WidgetModel> loadUWidgets();
+    std::optional<QList<WidgetModel>> loadUWidgets(int uID);
 
 private:
     Database& m_db;

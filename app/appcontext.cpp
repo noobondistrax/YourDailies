@@ -38,10 +38,10 @@ void AppContext::startSession(UserSession session)
 {
     m_session = std::move(session);
 
-
-    Logger::instance().log(LogLevel::Info,"UserSession gestartet fuer User: " + m_session->user().username());
+    // Logger::instance().log(LogLevel::Info,"UserSession gestartet fuer User: " + m_session->user().username());
 }
 
+/*
 void AppContext::endSession()
 {
     if (m_session) {
@@ -53,3 +53,4 @@ void AppContext::endSession()
 bool AppContext::adminExists() {
     return m_database.adminExists();
 }
+*/

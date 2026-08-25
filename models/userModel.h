@@ -4,14 +4,14 @@
 #include <QString>
 
 struct UserModel {
-    QString uID;
+    int uID = 0;            // int
     QString uName;
     QString uMail;
-    QString uPwHash;
-    QString uRole;
-    QString uStatus;
-    QString uRequested;
-    QString uConfirmed;
+    QString uPwHash;        
+    QString uRole;          // Admin?
+	QString uStatus;        // konsistenz zu Bezeichnung: 'active', 'inactive', 'pending'?
+    QString uRequested;     // Datum der Anfrage
+	QString uConfirmed;     // Datum der Bestätigung
 };
 
 #endif // USERMODEL_H

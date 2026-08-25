@@ -4,13 +4,13 @@
 #include <sodium.h>
 
 
-UserService::UserService(UserRepository& userRepository)
-	: m_userRepository(userRepository)
+UserService::UserService(UserRepository& userRepository, WidgetService& widgetService)
+	: m_userRepository(userRepository), m_widgetService(widgetService)
 {
 
 }
 
-bool UserService::login(const QString& email, const QString& password, UserSession& outSession) {
+bool UserService::login(const QString& email, const QString& password, UserSession& session) {
 
 	std::optional<UserModel> result = m_userRepository.loadByMail(email);
 
@@ -20,15 +20,23 @@ bool UserService::login(const QString& email, const QString& password, UserSessi
 		return false;
 	}
 
+
+	// build Usermodel
 	UserModel& user = result.value();
 	const bool verified = verifyPassword(password, user.uPwHash);
 	
 	if (!verified) {
 		return false;
 	}
+	
+	// build users Widgets
+	std::optional<QList<WidgetModel>> optWidgets = m_widgetService.getWidgets(user.uID);
+	QList<WidgetModel> widgetList = m_widgetService.getWidgets(user.uID).value_or(QList<WidgetModel>{});
 
-	outSession.setUser(std::move(user));
-	//outSession.setWidgets(std::move(..))
+	// save in Session
+	session.setUser(std::move(user));
+	session.setWidgets(std::move(widgetList));
+
 
 	return true;
 }

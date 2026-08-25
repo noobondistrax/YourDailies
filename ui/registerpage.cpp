@@ -5,9 +5,10 @@
 #include "designer.h"
 
 
-RegisterPage::RegisterPage(QWidget *parent)
+RegisterPage::RegisterPage(AppContext& context, QWidget *parent)
     : QWidget(parent)
-    ,ui(new Ui::RegisterPage)
+    , m_context(context)
+    , ui(new Ui::RegisterPage)
 {
     ui->setupUi(this);
 

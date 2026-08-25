@@ -23,7 +23,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    AppContext& m_context;
+
     void progStart(AppContext& context);
+    void showDashboard();
 
 };
 #endif // MAINWINDOW_H

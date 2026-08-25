@@ -6,12 +6,11 @@
 #include <QList>
 #include "widgetModel.h"
 #include "widgetcontainer.h"
-#include "appcontext.h"
 
 class DashboardCanvas : public QWidget {
     Q_OBJECT
 public:
-    explicit DashboardCanvas(QList<WidgetModel> &widgets, QWidget *parent = nullptr);
+    explicit DashboardCanvas(QList<WidgetModel> &widgets, WidgetService& widgetService, QWidget *parent = nullptr);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -36,6 +35,8 @@ private:
     QRect rectOf(const WidgetModel &m) const;
     QPoint cellAt(const QPoint &canvasPos) const;
     int indexAt(int col, int row) const;
+
+	WidgetService& m_widgetService;
 
     QList<WidgetModel> &m_data;
     QList<WidgetContainer*> m_containers;           // visuelle Widgets, gleicher Index wie m_data
