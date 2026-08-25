@@ -9,7 +9,7 @@ class UserRepository {
 public:
     explicit UserRepository(Database& db) : m_db(db) {}
 
-    UserModel loadByMail(const QString& mail);
+    std::optional<UserModel> loadByMail(const QString& mail);
     bool uCreate(const UserModel& userModel);
     bool uUpdate(const UserModel& userModel);
     bool uDelete(const UserModel& userModel);

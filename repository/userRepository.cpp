@@ -1,21 +1,21 @@
 #include "userRepository.h"
 
 
-UserModel UserRepository::loadByMail(const QString& mail) {
-    const char* sql = "SELECT user_id, username, email, password_hash, role, status, requested_at, confirmed_at"
+std::optional<UserModel> UserRepository::loadByMail(const QString& mail) {
+
+    const char* sql = "SELECT user_id, username, email, password_hash, role, status, requested_at, confirmed_at "
                       "FROM users WHERE email = ? LIMIT 1;";
     sqlite3_stmt* stmt = nullptr;
 
     if (sqlite3_prepare_v2(m_db.connection(), sql, -1, &stmt, nullptr) != SQLITE_OK) {
         qDebug() << "Fehler beim Vorbereiten der Query:" << sqlite3_errmsg(m_db.connection());
-        return;
+        return std::nullopt;
     }
 
     QByteArray mailUtf8 = mail.toUtf8();
     sqlite3_bind_text(stmt, 1, mailUtf8.constData(), -1, SQLITE_TRANSIENT);
-
+    
     UserModel user;
-
     if (sqlite3_step(stmt) == SQLITE_ROW) {
         user.uID        = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
         user.uName      = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));

@@ -3,13 +3,12 @@
 #include <QScrollArea>
 #include <QVBoxLayout>
 
-DashboardPage::DashboardPage(AppContext& context, QWidget *parent)
+DashboardPage::DashboardPage(QWidget *parent)
     : QWidget(parent)
 {
-    // attention - parameter 1 have to be changed!!!!!!!!
-    buildWidgets(); // only for testing
+    // buildWidgets(); // only for testing
 
-    auto *canvas = new DashboardCanvas(conext, m_data, this);
+	auto* canvas = new DashboardCanvas(m_data, this);   // anstelle m_data: m_context.session().widgets() - but session is not available here, so we have to pass the widgets from the session to the DashboardPage constructor
 
     auto *scrollArea = new QScrollArea(this);
     scrollArea->setWidget(canvas);
@@ -24,8 +23,11 @@ DashboardPage::DashboardPage(AppContext& context, QWidget *parent)
 
 DashboardPage::~DashboardPage() = default;
 
+//FUNKTION ZUM WIDGET ERSTELLEN FÜR TESTS
+/*
 void DashboardPage::buildWidgets() {
-    // Function to fill m_data with users Widgetlist or take usersList - why dublicate given list?
+	// Erstellt Widgets zum testen - Funktion eigentlich überflüssig, da die Widgets aus der Datenbank geladen werden sollten
+    // Eigentlich: context.session.widgetliste....
 
     WidgetModel model1;
     model1.wName = "widget_1";
@@ -91,3 +93,4 @@ void DashboardPage::buildWidgets() {
     model8.wHeight = 1;
     m_data.append(model8);
 }
+*/

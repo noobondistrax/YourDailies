@@ -18,9 +18,8 @@ private:
 
     bool verifyPassword(const QString& password, const QString& hash) const;
 
-    // Fixer, gültiger Argon2id-Hash - z.B. Hash von "dummy_password_never_used"
-    // WICHTIG: Muss mit exakt denselben Argon2-Parametern erzeugt sein wie eure echten Hashes!
-    static const QString kDummyHash;
+
+    static const QString kDummyHash = "$argon2id$v=19$m=65536,t=2,p=1$O+EEKGud6QGM+vHcQ4YQ/A$HyZiKG5CGnRfX2s3isoxuu16oZxXRoNk7oe6BVnZg74";
 };
 
 #endif // USERSERVICE_H

@@ -30,7 +30,7 @@ void LoginPage::onLoginClicked() {
 	bool result = m_context.userService().login(email, password, session);
 
 	if (!result) {
-        QMessageBox::warning(this, "Login Failed", "Invalid email or password");
+        QMessageBox::warning(this, "Login Failed", "Invalid Logindata");
 		return;
 	}
 

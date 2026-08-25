@@ -1,7 +1,7 @@
 #include "dashboardcanvas.h"
 
-DashboardCanvas::DashboardCanvas(AppContext& context, QList<WidgetModel> &widgets, QWidget *parent)
-    : m_context(context), QWidget(parent), m_data(widgets)
+DashboardCanvas::DashboardCanvas(QList<WidgetModel> &widgets, QWidget *parent)
+    : QWidget(parent), m_data(widgets)
 {
     const int minWidth = m_columns * kMinCellWidth + m_spacing * (m_columns + 1);
     setMinimumWidth(minWidth);

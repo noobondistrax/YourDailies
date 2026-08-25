@@ -1,6 +1,7 @@
 #include "userservice.h"
 #include "userSession.h"
 #include "userModel.h"
+#include <sodium.h>
 
 
 UserService::UserService(UserRepository& userRepository)
@@ -11,18 +12,38 @@ UserService::UserService(UserRepository& userRepository)
 
 bool UserService::login(const QString& email, const QString& password, UserSession& outSession) {
 
-	// Check ob Email und HashPasswort stimmmen   - repository loadByMail(const QString& mail)
+	std::optional<UserModel> result = m_userRepository.loadByMail(email);
 
-	UserModel user = m_userRepository.loadByMail(email);
+	if (!result.has_value()) {
+		verifyPassword(password, kDummyHash);
+		qDebug() << "Kein Benutzer gefunden oder Datenbankfehler";
+		return false;
+	}
 
-		
-		//UserRepository::loadByMail(const QString & mail)
+	UserModel& user = result.value();
+	const bool verified = verifyPassword(password, user.uPwHash);
+	
+	if (!verified) {
+		return false;
+	}
 
+	outSession.setUser(std::move(user));
+	//outSession.setWidgets(std::move(..))
 
-	// zum schluss return - Login erfolgreich (true) oder nicht (false)
+	return true;
 }
 
-//bool verifyPassword(const QString& password, const QString& hash) const;
-// einmalig offline erzeugen, z.B.per argon2 CLI - Tool oder eurer eigenen Hash - Funktion
-const QString UserService::kDummyHash = "$argon2id$v=19$m=65536,t=3,p=4$c29tZXNhbHQ$dummyHashValueHere...";
+
+
+bool UserService::verifyPassword(const QString& password, const QString& hash) const
+{
+	if (hash.isEmpty()) {
+		return false;
+	}
+
+	QByteArray passwordUtf8 = password.toUtf8();
+	QByteArray hashUtf8 = hash.toUtf8();
+
+	return crypto_pwhash_str_verify(hashUtf8.constData(), passwordUtf8.constData(),	static_cast<unsigned long long>(passwordUtf8.size())) == 0;
+}
 

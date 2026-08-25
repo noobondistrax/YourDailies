@@ -11,7 +11,7 @@
 class DashboardCanvas : public QWidget {
     Q_OBJECT
 public:
-    explicit DashboardCanvas(AppContext& context, QList<WidgetModel> &widgets, QWidget *parent = nullptr);
+    explicit DashboardCanvas(QList<WidgetModel> &widgets, QWidget *parent = nullptr);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -20,8 +20,6 @@ private slots:
     void onDragFinished(WidgetContainer *widget, const QPoint &globalPos);
 
 private:
-    // void loadData();
-    AppContext &m_context;
     int cellWidthPx() const;
     void reflow();
     void updateContentHeight();
