@@ -23,11 +23,15 @@ public:
     //const DashboardPage& dashboard() const { return m_dashboard; }
     const QList<WidgetModel>& widgets() const { return m_widgets; }
     //const Settings& settings() const { return m_settings; }
+    
+    bool isActive() const { return m_active; }  // check if UserSession is or is not active
+	void changeActiveState(bool status) { /* true for set active; false for set inactive*/ m_active = status; } // set UserSession active or inactive
 
 private:
     QList<WidgetModel> m_widgets;
     UserModel m_user;
-	//DashboardPage m_dashboard;
+	bool m_active = false;
+	
     //UserSettings m_settings;
 };
 

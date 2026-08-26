@@ -29,10 +29,17 @@ void LoginPage::onLoginClicked() {
     UserSession session;
 	bool result = m_context.userService().login(email, password, session);
 
+	// if any Data (PW or E-Mail) is wrong, show a warning and return
 	if (!result) {
         QMessageBox::warning(this, "Login Failed", "Invalid Logindata");
 		return;
-	}
+    }
+
+	// Check if the user account is active
+    if (!m_context.userService().isUserActive(session.user())) {
+        QMessageBox::warning(this, "Login Failed", "Account is not active. Please contact support.");
+		return;
+    }
 
     m_context.startSession(std::move(session));
 

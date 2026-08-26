@@ -31,10 +31,11 @@ std::optional<UserModel> UserRepository::loadByMail(const QString& mail) {
     return user;
 }
 
+
 bool UserRepository::uCreate(const UserModel& user) {
     const char* sql = "INSERT INTO users "
-                      "(username, email, password_hash, role, status, requested_at) "
-                      "VALUES (?, ?, ?, ?, ?, ?);";
+                      "(username, email, password_hash, role, status, requested_at, confirmed_at) "
+                      "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
     sqlite3_stmt* stmt = nullptr;
 
@@ -49,6 +50,8 @@ bool UserRepository::uCreate(const UserModel& user) {
     QByteArray roleUtf8     = user.uRole.toUtf8();
     QByteArray statusUtf8   = user.uStatus.toUtf8();
     QByteArray requestedUtf8 = user.uRequested.toUtf8();
+    QByteArray confirmedUtf8 = user.uConfirmed.toUtf8();
+
 
     sqlite3_bind_text(stmt, 1, usernameUtf8.constData(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 2, emailUtf8.constData(),    -1, SQLITE_TRANSIENT);
@@ -56,6 +59,7 @@ bool UserRepository::uCreate(const UserModel& user) {
     sqlite3_bind_text(stmt, 4, roleUtf8.constData(),     -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 5, statusUtf8.constData(),   -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 6, requestedUtf8.constData(),-1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 7, confirmedUtf8.constData(),-1, SQLITE_TRANSIENT);
 
     bool success = (sqlite3_step(stmt) == SQLITE_DONE);
 

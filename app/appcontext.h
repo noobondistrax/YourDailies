@@ -29,7 +29,7 @@ public:
     WidgetService&          widgetService()         { return *m_widgetService; }
 
     // -- UserSession: existiert erst NACH erfolgreichem Login --
-    bool hasActiveSession() const { return m_session.has_value(); }
+    bool hasActiveSession() const { return m_session.isActive(); }
     UserSession& session();              // Zugriff nur wenn eingeloggt
     void startSession(UserSession session);
     void endSession();
@@ -46,7 +46,6 @@ private:
     std::unique_ptr<WidgetService> m_widgetService;
 
     UserSession m_session;
-    //UserSession& session;
 };
 
 #endif // APPCONTEXT_H

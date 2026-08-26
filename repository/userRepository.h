@@ -13,6 +13,7 @@ public:
     bool uCreate(const UserModel& userModel);
     bool uUpdate(const UserModel& userModel);
     bool uDelete(const UserModel& userModel);
+	bool adminExists() const { return m_db.adminExists(); }
 
 private:
     Database& m_db;
