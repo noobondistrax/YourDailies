@@ -32,7 +32,13 @@ std::optional<UserModel> UserRepository::loadByMail(const QString& mail) {
 }
 
 
-bool UserRepository::uCreate(const UserModel& user) {
+bool UserRepository::uCreate(const UserModel& user, int questionId, const QString& secAnswer) {
+    if (sqlite3_exec(m_db.connection(), "BEGIN TRANSACTION;", nullptr, nullptr, nullptr) != SQLITE_OK) {
+        qDebug() << "Fehler beim Starten der Transaktion:" << sqlite3_errmsg(m_db.connection());
+        return false;
+    }
+
+    // 1. setup user
     const char* sql = "INSERT INTO users "
                       "(username, email, password_hash, role, status, requested_at, confirmed_at) "
                       "VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -62,13 +68,52 @@ bool UserRepository::uCreate(const UserModel& user) {
     sqlite3_bind_text(stmt, 7, confirmedUtf8.constData(),-1, SQLITE_TRANSIENT);
 
     bool success = (sqlite3_step(stmt) == SQLITE_DONE);
+    sqlite3_finalize(stmt);
 
     if (!success) {
         qDebug() << "Fehler beim Einfügen des Users:" << sqlite3_errmsg(m_db.connection());
+        sqlite3_exec(m_db.connection(), "ROLLBACK;", nullptr, nullptr, nullptr);
+        return false;
     }
 
-    sqlite3_finalize(stmt);
-    return success;
+    // Gerade vergebene user_id merken - wird fuer den zweiten INSERT als Fremdschluessel gebraucht
+    const sqlite3_int64 newUserId = sqlite3_last_insert_rowid(m_db.connection());
+
+    // 2. Sicherheitsantwort anlegen
+    const char* sqlAnswer = "INSERT INTO user_security_answers "
+        "(user_id, question_id, answer_hash) "
+        "VALUES (?, ?, ?);";
+
+    sqlite3_stmt* stmtAnswer = nullptr;
+
+    if (sqlite3_prepare_v2(m_db.connection(), sqlAnswer, -1, &stmtAnswer, nullptr) != SQLITE_OK) {
+        qDebug() << "Fehler beim Vorbereiten der Answer-Query:" << sqlite3_errmsg(m_db.connection());
+        sqlite3_exec(m_db.connection(), "ROLLBACK;", nullptr, nullptr, nullptr);
+        return false;
+    }
+
+    QByteArray secAnswerUtf8 = secAnswer.toUtf8();
+
+    sqlite3_bind_int64(stmtAnswer, 1, newUserId);
+    sqlite3_bind_int(stmtAnswer, 2, questionId);
+    sqlite3_bind_text(stmtAnswer, 3, secAnswerUtf8.constData(), -1, SQLITE_TRANSIENT);
+
+    bool answerSuccess = (sqlite3_step(stmtAnswer) == SQLITE_DONE);
+    sqlite3_finalize(stmtAnswer);
+
+    if (!answerSuccess) {
+        qDebug() << "Fehler beim Einfügen der Sicherheitsantwort:" << sqlite3_errmsg(m_db.connection());
+        sqlite3_exec(m_db.connection(), "ROLLBACK;", nullptr, nullptr, nullptr);
+        return false;
+    }
+
+    if (sqlite3_exec(m_db.connection(), "COMMIT;", nullptr, nullptr, nullptr) != SQLITE_OK) {
+        qDebug() << "Fehler beim Commit:" << sqlite3_errmsg(m_db.connection());
+        sqlite3_exec(m_db.connection(), "ROLLBACK;", nullptr, nullptr, nullptr);
+        return false;
+    }
+
+    return true;
 }
 
 bool UserRepository::uUpdate(const UserModel& user) {

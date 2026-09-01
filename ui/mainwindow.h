@@ -25,8 +25,10 @@ private:
     Ui::MainWindow *ui;
     AppContext& m_context;
 
-    void progStart(AppContext& context);
+    void progStart();
     void showDashboard();
+    void showLoginPage();
+    void showRegisterPage();
 
 };
 #endif // MAINWINDOW_H

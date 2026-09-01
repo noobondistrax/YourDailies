@@ -45,3 +45,7 @@ void LoginPage::onLoginClicked() {
 
     emit loginSucceeded();
 }
+
+void LoginPage::onRegisterClicked() {
+     emit registerClicked();
+}

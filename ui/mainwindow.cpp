@@ -14,7 +14,7 @@ MainWindow::MainWindow(AppContext& appContext, QWidget* parent)
     ui->setupUi(this);
     setFixedSize(size());
 
-    progStart(appContext);
+    progStart();
 
 }
 
@@ -23,17 +23,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::progStart(AppContext& context) {
-    if(context.adminExists()) {
-        auto *loginpage = new LoginPage(context);
-        ui->stackedWidget->addWidget(loginpage);
-        ui->stackedWidget->setCurrentWidget(loginpage);
+void MainWindow::progStart() {
+    if(m_context.adminExists()) {
+        showLoginPage();
 
-		connect(loginpage, &LoginPage::loginSucceeded, this, &MainWindow::showDashboard);
     } else {
-        auto *registerpage = new RegisterPage(context);
-        ui->stackedWidget->addWidget(registerpage);
-        ui->stackedWidget->setCurrentWidget(registerpage);
+        showRegisterPage();
     }
 }
 
@@ -42,4 +37,23 @@ void MainWindow::showDashboard()
     auto* dashboardpage = new DashboardPage(m_context.session().widgets(), m_context.widgetService(), this);
     ui->stackedWidget->addWidget(dashboardpage);
     ui->stackedWidget->setCurrentWidget(dashboardpage);
+}
+
+void MainWindow::showLoginPage() 
+{
+    auto* loginpage = new LoginPage(m_context);
+    ui->stackedWidget->addWidget(loginpage);
+    ui->stackedWidget->setCurrentWidget(loginpage);
+
+    connect(loginpage, &LoginPage::loginSucceeded, this, &MainWindow::showDashboard);
+    connect(loginpage, &LoginPage::registerClicked, this, &MainWindow::showRegisterPage);
+	// connect(loginpage, &LoginPage::forgotPasswordRequested, this, &MainWindow:: )
+		
+}
+
+void MainWindow::showRegisterPage() {
+	auto* registerpage = new RegisterPage(m_context);
+	ui->stackedWidget->addWidget(registerpage);
+	ui->stackedWidget->setCurrentWidget(registerpage);
+	connect(registerpage, &RegisterPage::RegisterSucceeded, this, &MainWindow::showLoginPage);
 }

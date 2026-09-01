@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>430</y>
+     <y>360</y>
      <width>241</width>
      <height>16</height>
     </rect>
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>530</x>
-     <y>270</y>
+     <y>200</y>
      <width>241</width>
      <height>16</height>
     </rect>
@@ -64,7 +64,7 @@
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>350</y>
+     <y>280</y>
      <width>241</width>
      <height>16</height>
     </rect>
@@ -86,7 +86,7 @@
    <property name="geometry">
     <rect>
      <x>445</x>
-     <y>110</y>
+     <y>40</y>
      <width>401</width>
      <height>95</height>
     </rect>
@@ -102,7 +102,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>290</y>
+     <y>220</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -131,7 +131,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>350</y>
+     <y>280</y>
      <width>241</width>
      <height>16</height>
     </rect>
@@ -153,7 +153,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>196</y>
+     <y>126</y>
      <width>571</width>
      <height>51</height>
     </rect>
@@ -179,7 +179,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>450</y>
+     <y>380</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -211,7 +211,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>530</y>
+     <y>610</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -230,7 +230,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>430</y>
+     <y>360</y>
      <width>241</width>
      <height>16</height>
     </rect>
@@ -252,7 +252,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>660</x>
-     <y>370</y>
+     <y>300</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -281,7 +281,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>660</x>
-     <y>450</y>
+     <y>380</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -313,7 +313,7 @@ background-color: rgb(206, 206, 206);</string>
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>370</y>
+     <y>300</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -338,6 +338,70 @@ background-color: rgb(206, 206, 206);</string>
     <string>example@mail.com</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="register_sec_question">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>460</y>
+     <width>541</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="register_sec_answer">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>540</y>
+     <width>541</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="register_sec_question_label">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>440</y>
+     <width>521</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>SICHERHEITSFRAGE (für PW Wiederherstellung)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="register_sec_answer_label">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>520</y>
+     <width>521</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>ANTWORT</string>
+   </property>
+  </widget>
   <zorder>register_password_label</zorder>
   <zorder>register_name_label</zorder>
   <zorder>register_email_confirm_label</zorder>
@@ -351,6 +415,10 @@ background-color: rgb(206, 206, 206);</string>
   <zorder>register_password_confirm</zorder>
   <zorder>register_email</zorder>
   <zorder>label_2</zorder>
+  <zorder>register_sec_question</zorder>
+  <zorder>register_sec_answer</zorder>
+  <zorder>register_sec_question_label</zorder>
+  <zorder>register_sec_answer_label</zorder>
  </widget>
  <tabstops>
   <tabstop>register_name</tabstop>
@@ -358,6 +426,8 @@ background-color: rgb(206, 206, 206);</string>
   <tabstop>register_email_confirm</tabstop>
   <tabstop>register_password</tabstop>
   <tabstop>register_password_confirm</tabstop>
+  <tabstop>register_sec_question</tabstop>
+  <tabstop>register_sec_answer</tabstop>
   <tabstop>register_pB_register</tabstop>
  </tabstops>
  <resources>

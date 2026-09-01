@@ -12,6 +12,7 @@ class Database
 public:
     enum class tableNames {
         users,
+        user_security_answers,
         user_settings,
         widgets,
         user_widgets,
@@ -40,6 +41,7 @@ private:
 
     sqlite3* m_db = nullptr;
     void createUsersTable();
+	void createUserSecAnswersTable();
     void createUserSettingsTable();
     void createWidgetsTable();
     void createUserWidgetsTabele();

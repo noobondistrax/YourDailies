@@ -15,7 +15,7 @@ bool UserService::login(const QString& email, const QString& password, UserSessi
 	std::optional<UserModel> result = m_userRepository.loadByMail(email);
 
 	if (!result.has_value()) {
-		verifyPassword(password, kDummyHash);
+		verifyHash(password, kDummyHash);
 		qDebug() << "Kein Benutzer gefunden oder Datenbankfehler";
 		return false;
 	}
@@ -23,7 +23,7 @@ bool UserService::login(const QString& email, const QString& password, UserSessi
 
 	// build Usermodel
 	UserModel& user = result.value();
-	const bool verified = verifyPassword(password, user.uPwHash);
+	const bool verified = verifyHash(password, user.uPwHash);
 	
 	if (!verified) {
 		return false;
@@ -41,18 +41,24 @@ bool UserService::login(const QString& email, const QString& password, UserSessi
 	return true;
 }
 
-bool UserService::registerUser(const QString& name, const QString& email, const QString& password) {
+bool UserService::registerUser(const QString& name, const QString& email, const QString& password, int questionId, const QString& secAnswer) {
 	
-	const QString hash = hashPassword(password);
-	if (hash.isEmpty()) {
+	const QString hashPW = hashing(password);
+	if (hashPW.isEmpty()) {
 		qDebug() << "Passwort-Hashing fehlgeschlagen";
+		return false;
+	}
+
+	const QString hashSec = hashing(secAnswer);
+	if (hashSec.isEmpty()) {
+		qDebug() << "Sicherheitsfragen-Antwort-Hashing fehlgeschlagen";
 		return false;
 	}
 
 	UserModel user;
 	user.uName = name;
 	user.uMail = email;
-	user.uPwHash = hash;
+	user.uPwHash = hashPW;
 	user.uRequested = QDateTime::currentDateTime().toString(Qt::ISODate);
 	
 	if (!m_userRepository.adminExists()) {
@@ -66,25 +72,25 @@ bool UserService::registerUser(const QString& name, const QString& email, const 
 		user.uConfirmed = ""; // not confirmed yet
 	}
 
-	return m_userRepository.uCreate(user);
+	return m_userRepository.uCreate(user, questionId, hashSec);
 }
 
 
 
-bool UserService::verifyPassword(const QString& password, const QString& hash) const
+bool UserService::verifyHash(const QString& plain, const QString& hash) const
 {
 	if (hash.isEmpty()) {
 		return false;
 	}
 
-	QByteArray passwordUtf8 = password.toUtf8();
+	QByteArray plainUtf8 = plain.toUtf8();
 	QByteArray hashUtf8 = hash.toUtf8();
 
-	return crypto_pwhash_str_verify(hashUtf8.constData(), passwordUtf8.constData(),	static_cast<unsigned long long>(passwordUtf8.size())) == 0;
+	return crypto_pwhash_str_verify(hashUtf8.constData(), plainUtf8.constData(),	static_cast<unsigned long long>(plainUtf8.size())) == 0;
 }
 
 
-QString UserService::hashPassword(const QString& plain) const {
+QString UserService::hashing(const QString& plain) const {
 	char hashed[crypto_pwhash_STRBYTES];
 	QByteArray plainUtf8 = plain.toUtf8();
 

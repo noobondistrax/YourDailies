@@ -18,6 +18,7 @@ public:
 
 signals:
     void loginSucceeded();
+	void registerClicked();
     void forgotPasswordRequested();
 
 private slots:

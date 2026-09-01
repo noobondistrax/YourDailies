@@ -76,6 +76,26 @@ void Database::createUsersTable() {
     m_tableStatus[tableNames::users] = tableStatus::created;
 }
 
+void Database::createUserSecAnswersTable() {
+    const char* sql = "CREATE TABLE IF NOT EXISTS user_security_answers  ("
+                    "user_id INTEGER PRIMARY KEY, "       // in SQL: 'VARCHAR(255)', but SQLite ignores the length "(255)" and convert 'VARCHAR' to 'TEXT'
+                    "question_id INTEGER, "
+                    "answer_hash TEXT"
+                    ");";
+
+    char* errMsg = nullptr;
+    int rc = sqlite3_exec(m_db, sql, nullptr, nullptr, &errMsg);
+
+    if (rc != SQLITE_OK) {
+        qDebug() << "Fehler beim Erstellen der 'user_security_answers' Tabelle:" << errMsg;
+        m_tableStatus[tableNames::user_security_answers] = tableStatus::failed;
+        sqlite3_free(errMsg);
+        return;
+    }
+    qDebug() << "'user_security_answers' Tabelle erfolgreich erstellt (oder existierte schon)!";
+    m_tableStatus[tableNames::user_security_answers] = tableStatus::created;
+}
+
 void Database::createUserSettingsTable() {
     const char* sql = "CREATE TABLE IF NOT EXISTS user_settings ("
                       "user_setting_id INTEGER PRIMARY KEY, "

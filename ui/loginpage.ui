@@ -223,7 +223,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="text">
-    <string>ZUGANGSDATEN VERGESSEN</string>
+    <string>PASSWORT VERGESSEN</string>
    </property>
   </widget>
   <zorder>login_pB_register</zorder>

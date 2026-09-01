@@ -1,4 +1,5 @@
 #include <QPalette>
+#include <qcombobox.h>
 #include <QList>
 #include <qmessagebox.h>
 #include "registerpage.h"
@@ -14,6 +15,14 @@ RegisterPage::RegisterPage(AppContext& context, QWidget *parent)
     ui->setupUi(this);
 
     const QList<QLineEdit*> edits = this->findChildren<QLineEdit*>();
+
+    ui->register_sec_question->addItem("Wie hieß dein/e erste/r Lehrer/In?", QVariant(1));
+    ui->register_sec_question->addItem("Was ist dein Lieblingshobby?", QVariant(2));
+    ui->register_sec_question->addItem("In welcher Stadt bist du geboren1?", QVariant(3));
+    ui->register_sec_question->addItem("Welcher ist dein Lieblingsverein?", QVariant(4));
+    ui->register_sec_question->addItem("Was ist dein Lieblingsessen?", QVariant(5));
+    ui->register_sec_question->addItem("Was ist dein Lieblingstier?", QVariant(6));
+
 
     for (QLineEdit* edit : edits)
     {
@@ -89,8 +98,10 @@ void RegisterPage::onRegisterClicked()
     const QString email2 = ui->register_email_confirm->text();
     const QString password1 = ui->register_password->text();
     const QString password2 = ui->register_password_confirm->text();
+    int questionId = ui->register_sec_question->currentData().toInt();
+	const QString secAnswer = ui->register_sec_answer->text();
 
-	if (name.isEmpty() || email1.isEmpty() || email2.isEmpty() || password1.isEmpty() || password2.isEmpty()) {        
+	if (name.isEmpty() || email1.isEmpty() || email2.isEmpty() || password1.isEmpty() || password2.isEmpty() || secAnswer.isEmpty() ) {        
         QMessageBox::warning(this, "Registration Failed", "Please fill in all fields.");
 		return;
 	}
@@ -100,7 +111,11 @@ void RegisterPage::onRegisterClicked()
 		return;
 	}
 
-	bool result = m_context.userService().registerUser(name, email1, password1);
+    if (!m_context.userService().registerUser(name, email1, password1, questionId, secAnswer)) {
+        QMessageBox::warning(this, "Registration Failed", "Failed to register user.");
+    }
 
-    // ########### WEITERMACHEN!!!!!!!!!!!!!!!
+	QMessageBox::information(this, "Registration Successful", "Your registration was successful. Please wait for admin approval."); 
+
+	emit RegisterSucceeded();
 }

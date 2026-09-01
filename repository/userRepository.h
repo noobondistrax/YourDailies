@@ -10,9 +10,9 @@ public:
     explicit UserRepository(Database& db) : m_db(db) {}
 
     std::optional<UserModel> loadByMail(const QString& mail);
-    bool uCreate(const UserModel& userModel);
-    bool uUpdate(const UserModel& userModel);
-    bool uDelete(const UserModel& userModel);
+    bool uCreate(const UserModel& user, int questionId, const QString& secAnswer);
+    bool uUpdate(const UserModel& user);
+    bool uDelete(const UserModel& user);
 	bool adminExists() const { return m_db.adminExists(); }
 
 private:
