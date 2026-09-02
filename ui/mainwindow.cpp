@@ -3,6 +3,7 @@
 #include "loginpage.h"
 #include "registerpage.h"
 #include "dashboardpage.h"
+#include "pwReset.h"
 
 
 MainWindow::MainWindow(AppContext& appContext, QWidget* parent)
@@ -47,8 +48,7 @@ void MainWindow::showLoginPage()
 
     connect(loginpage, &LoginPage::loginSucceeded, this, &MainWindow::showDashboard);
     connect(loginpage, &LoginPage::registerClicked, this, &MainWindow::showRegisterPage);
-	// connect(loginpage, &LoginPage::forgotPasswordRequested, this, &MainWindow:: )
-		
+	connect(loginpage, &LoginPage::forgotPasswordRequested, this, &MainWindow::showPWReset);
 }
 
 void MainWindow::showRegisterPage() {
@@ -56,4 +56,11 @@ void MainWindow::showRegisterPage() {
 	ui->stackedWidget->addWidget(registerpage);
 	ui->stackedWidget->setCurrentWidget(registerpage);
 	connect(registerpage, &RegisterPage::RegisterSucceeded, this, &MainWindow::showLoginPage);
+}
+
+void MainWindow::showPWReset() {
+    auto* pwreset = new pwReset(m_context);
+    ui->stackedWidget->addWidget(pwreset);
+    ui->stackedWidget->setCurrentWidget(pwreset);
+	connect(pwreset, &pwReset::passwordResetted, this, &MainWindow::showLoginPage);
 }

@@ -49,7 +49,7 @@ bool UserService::registerUser(const QString& name, const QString& email, const 
 		return false;
 	}
 
-	const QString hashSec = hashing(secAnswer);
+	const QString hashSec = hashing(secAnswer.toLower().trimmed());
 	if (hashSec.isEmpty()) {
 		qDebug() << "Sicherheitsfragen-Antwort-Hashing fehlgeschlagen";
 		return false;
@@ -75,7 +75,37 @@ bool UserService::registerUser(const QString& name, const QString& email, const 
 	return m_userRepository.uCreate(user, questionId, hashSec);
 }
 
+bool UserService::resetPassword(const QString& email, const QString& newPassword, int questionId, const QString& plainAnswer) {
+	std::optional<UserModel> optUser = m_userRepository.loadByMail(email);
+	if (!optUser.has_value()) {
+		verifyHash(newPassword, kDummyHash);
+		qDebug() << "No User found or Database error";
+		return false;
+	}
 
+	UserModel user = optUser.value();
+
+	std::optional<SecAnswer> optSecAnswer = m_userRepository.getSecAnswer(user.uID);
+	if (!optSecAnswer.has_value()) {
+		qDebug() << "No Security Answer found or Database error	";
+		return false;
+	}
+
+	SecAnswer answerStruct = optSecAnswer.value();
+	if (answerStruct.questionId != questionId) {
+		qDebug() << "Security question does not match";
+		return false;
+	}
+
+	if (!verifyHash(plainAnswer.toLower().trimmed(), answerStruct.answerHash)) {
+		qDebug() << "Security answer is incorrect";
+		return false;
+	}
+		
+	user.uPwHash = hashing(newPassword);
+	
+	return m_userRepository.uUpdate(user);
+}
 
 bool UserService::verifyHash(const QString& plain, const QString& hash) const
 {
@@ -88,7 +118,6 @@ bool UserService::verifyHash(const QString& plain, const QString& hash) const
 
 	return crypto_pwhash_str_verify(hashUtf8.constData(), plainUtf8.constData(),	static_cast<unsigned long long>(plainUtf8.size())) == 0;
 }
-
 
 QString UserService::hashing(const QString& plain) const {
 	char hashed[crypto_pwhash_STRBYTES];
@@ -106,7 +135,6 @@ QString UserService::hashing(const QString& plain) const {
 
 	return QString::fromUtf8(hashed);
 }
-
 
 bool UserService::isUserActive(const UserModel& user) const {
 	if (user.uStatus == "active") {

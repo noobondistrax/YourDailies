@@ -53,6 +53,9 @@ set(PROJECT_SOURCES
     ui/mainwindow.h
     ui/mainwindow.cpp
     ui/mainwindow.ui
+    ui/pwReset.h
+    ui/pwReset.cpp
+    ui/pwReset.ui
     ui/registerpage.h
     ui/registerpage.cpp
     ui/registerpage.ui

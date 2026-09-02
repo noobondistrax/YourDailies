@@ -29,6 +29,7 @@ private:
     void showDashboard();
     void showLoginPage();
     void showRegisterPage();
+    void showPWReset();
 
 };
 #endif // MAINWINDOW_H

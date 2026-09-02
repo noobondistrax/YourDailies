@@ -16,20 +16,16 @@ RegisterPage::RegisterPage(AppContext& context, QWidget *parent)
 
     const QList<QLineEdit*> edits = this->findChildren<QLineEdit*>();
 
-    ui->register_sec_question->addItem("Wie hieß dein/e erste/r Lehrer/In?", QVariant(1));
-    ui->register_sec_question->addItem("Was ist dein Lieblingshobby?", QVariant(2));
-    ui->register_sec_question->addItem("In welcher Stadt bist du geboren1?", QVariant(3));
-    ui->register_sec_question->addItem("Welcher ist dein Lieblingsverein?", QVariant(4));
-    ui->register_sec_question->addItem("Was ist dein Lieblingsessen?", QVariant(5));
-    ui->register_sec_question->addItem("Was ist dein Lieblingstier?", QVariant(6));
-
-
     for (QLineEdit* edit : edits)
     {
         QPalette palette = edit->palette();
         palette.setColor(QPalette::PlaceholderText, QColor(148, 148, 148, 120));
         edit->setPalette(palette);
     }
+
+	for (int i = 1; i <= m_context.userService().getSecQuestions().size(); ++i)  {
+		ui->register_sec_question->addItem(m_context.userService().getSecQuestions()[i - 1], QVariant(i));
+	}
 
     Designer::passwordToggle(ui->register_password);
     Designer::passwordToggle(ui->register_password_confirm);

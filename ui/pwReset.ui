@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>pwReset</class>
+ <widget class="QWidget" name="pwReset">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>445</x>
+     <y>40</y>
+     <width>401</width>
+     <height>95</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../img/resources.qrc">:/logo/logo.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwr_mail">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>220</y>
+     <width>561</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Deine E-Mailadresse</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 8px;
+background-color: rgb(206, 206, 206);</string>
+   </property>
+   <property name="text">
+    <string>example@mail.com</string>
+   </property>
+   <property name="placeholderText">
+    <string>BENUTZERNAME</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwr_mail_label">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>200</y>
+     <width>521</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>E-MAIL</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="register_subtitle">
+   <property name="geometry">
+    <rect>
+     <x>365</x>
+     <y>126</y>
+     <width>571</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>24</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Password Reset</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pwr_pButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>540</y>
+     <width>561</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>PASSWORT ÄNDERN</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwr_sec_answer_label">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>440</y>
+     <width>521</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>BEI REGISTRIERUNG GEGEBENE ANTWORT</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwr_sec_question_label">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>360</y>
+     <width>521</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>BEI REGISTRIERUNG GEWÄHLTE SICHERHEITSFRAGE</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="pwr_sec_question">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>380</y>
+     <width>561</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwr_sec_answer">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>460</y>
+     <width>561</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 8px;
+background-color: rgb(206, 206, 206);</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwr_password">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>300</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Dein persönliches Passwort</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 8px;
+background-color: rgb(206, 206, 206);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+   </property>
+   <property name="placeholderText">
+    <string>**********</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwr_password_confirm_label">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>280</y>
+     <width>241</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>NEUES PASSWORT BESTÄTIGEN</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwr_password_label">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>280</y>
+     <width>251</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>NEUES PASSWORT</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwr_password_confirm">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>300</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Dein persönliches Passwort</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 8px;
+background-color: rgb(206, 206, 206);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+   </property>
+   <property name="placeholderText">
+    <string>**********</string>
+   </property>
+  </widget>
+  <zorder>pwr_mail</zorder>
+  <zorder>pwr_mail_label</zorder>
+  <zorder>register_subtitle</zorder>
+  <zorder>pwr_pButton</zorder>
+  <zorder>label</zorder>
+  <zorder>pwr_sec_answer_label</zorder>
+  <zorder>pwr_sec_question_label</zorder>
+  <zorder>pwr_sec_question</zorder>
+  <zorder>pwr_sec_answer</zorder>
+  <zorder>pwr_password</zorder>
+  <zorder>pwr_password_confirm_label</zorder>
+  <zorder>pwr_password_label</zorder>
+  <zorder>pwr_password_confirm</zorder>
+ </widget>
+ <tabstops>
+  <tabstop>pwr_mail</tabstop>
+  <tabstop>pwr_password</tabstop>
+  <tabstop>pwr_password_confirm</tabstop>
+  <tabstop>pwr_sec_question</tabstop>
+  <tabstop>pwr_sec_answer</tabstop>
+  <tabstop>pwr_pButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../img/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

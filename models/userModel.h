@@ -14,4 +14,9 @@ struct UserModel {
 	QString uConfirmed;     // Datum der Bestätigung
 };
 
+struct SecAnswer {
+	int questionId = 0;
+    QString answerHash;
+};
+
 #endif // USERMODEL_H

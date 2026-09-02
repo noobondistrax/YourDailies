@@ -49,3 +49,7 @@ void LoginPage::onLoginClicked() {
 void LoginPage::onRegisterClicked() {
      emit registerClicked();
 }
+
+void LoginPage::onForgetClicked() {
+	emit forgotPasswordRequested();
+}

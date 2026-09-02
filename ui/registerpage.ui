@@ -357,6 +357,10 @@ background-color: rgb(206, 206, 206);</string>
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 8px;
+background-color: rgb(206, 206, 206);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="register_sec_question_label">
    <property name="geometry">

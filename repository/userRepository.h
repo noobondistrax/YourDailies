@@ -13,6 +13,7 @@ public:
     bool uCreate(const UserModel& user, int questionId, const QString& secAnswer);
     bool uUpdate(const UserModel& user);
     bool uDelete(const UserModel& user);
+    std::optional<SecAnswer> getSecAnswer(int userId);
 	bool adminExists() const { return m_db.adminExists(); }
 
 private:
