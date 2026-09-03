@@ -1,14 +1,16 @@
 #ifndef DASHBOARDSERVICE_H
 #define DASHBOARDSERVICE_H
 
+#include "dashboardRepository.h"
+
 class DashboardService
 {
 public:
-    DashboardService() = default;
+    explicit DashboardService(DashboardRepository& dashboardRepository);
     ~DashboardService() = default;
 
 private:
-
+	DashboardRepository& m_dashboardRepository;
 };
 
 #endif

@@ -2,6 +2,10 @@
     <qresource prefix="/icons">
         <file>eye_closed.png</file>
         <file>eye_open.png</file>
+        <file>add_widget.png</file>
+        <file>admin.png</file>
+        <file>logout.png</file>
+        <file>settings.png</file>
     </qresource>
     <qresource prefix="/logo">
         <file>logo.png</file>

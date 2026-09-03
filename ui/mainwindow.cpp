@@ -35,7 +35,7 @@ void MainWindow::progStart() {
 
 void MainWindow::showDashboard()
 {
-    auto* dashboardpage = new DashboardPage(m_context.session().widgets(), m_context.widgetService(), this);
+    auto* dashboardpage = new DashboardPage(m_context.dashboardService(), m_context.session().widgets(), m_context.widgetService(), m_context.session().isAdmin(), this);
     ui->stackedWidget->addWidget(dashboardpage);
     ui->stackedWidget->setCurrentWidget(dashboardpage);
 }

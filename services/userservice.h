@@ -3,7 +3,6 @@
 
 #include <QString>
 #include <qlist.h>
-#include "appcontext.h"
 #include "userRepository.h"
 #include "widgetservice.h"
 #include "userModel.h"
@@ -29,7 +28,7 @@ private:
     QString hashing(const QString& plain) const;
 
 
-    static const QString kDummyHash = "$argon2id$v=19$m=65536,t=2,p=1$O+EEKGud6QGM+vHcQ4YQ/A$HyZiKG5CGnRfX2s3isoxuu16oZxXRoNk7oe6BVnZg74";
+    const QString kDummyHash = "$argon2id$v=19$m=65536,t=2,p=1$O+EEKGud6QGM+vHcQ4YQ/A$HyZiKG5CGnRfX2s3isoxuu16oZxXRoNk7oe6BVnZg74";
 
 	QList<QString> m_secQuestions = {
 		"Wie hieß dein / e erste / r Lehrer / In ? ",

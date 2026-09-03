@@ -6,11 +6,13 @@
 class DashboardRepository
 {
 public:
-    explicit DashboardRepository(Database& dB) {}
+	explicit DashboardRepository(Database& dB);
     ~DashboardRepository() = default;
 
-private:
+	bool isAdmin() const { return m_database.adminExists(); }
 
+private:
+	Database& m_database;
 };
 
 #endif // DASHBOARDREPOSITORY_H
