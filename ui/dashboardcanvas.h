@@ -5,12 +5,13 @@
 #include <QLabel>
 #include <QList>
 #include "widgetModel.h"
+#include "widgetservice.h"
 #include "widgetcontainer.h"
 
 class DashboardCanvas : public QWidget {
     Q_OBJECT
 public:
-    explicit DashboardCanvas(QList<WidgetModel> &widgets, WidgetService& widgetService, QWidget *parent = nullptr);
+    explicit DashboardCanvas(QList<WidgetModel> &widgets, WidgetService &widgetService, QWidget *parent = nullptr);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -36,7 +37,7 @@ private:
     QPoint cellAt(const QPoint &canvasPos) const;
     int indexAt(int col, int row) const;
 
-	WidgetService& m_widgetService;
+	WidgetService &m_widgetService;
 
     QList<WidgetModel> &m_data;
     QList<WidgetContainer*> m_containers;           // visuelle Widgets, gleicher Index wie m_data

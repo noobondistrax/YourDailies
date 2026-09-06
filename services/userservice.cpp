@@ -41,18 +41,24 @@ bool UserService::login(const QString& email, const QString& password, UserSessi
 	return true;
 }
 
-bool UserService::registerUser(const QString& name, const QString& email, const QString& password, int questionId, const QString& secAnswer) {
+/*
+* 0 = failed
+* 1 = success user
+* 2 = success admin
+*/
+int UserService::registerUser(const QString& name, const QString& email, const QString& password, int questionId, const QString& secAnswer) {
 	
 	const QString hashPW = hashing(password);
+
 	if (hashPW.isEmpty()) {
-		qDebug() << "Passwort-Hashing fehlgeschlagen";
-		return false;
+		qDebug() << "Password-Hashing failed";
+		return 0;
 	}
 
 	const QString hashSec = hashing(secAnswer.toLower().trimmed());
 	if (hashSec.isEmpty()) {
-		qDebug() << "Sicherheitsfragen-Antwort-Hashing fehlgeschlagen";
-		return false;
+		qDebug() << "Securityquestion-answer-hashing failed";
+		return 0;
 	}
 
 	UserModel user;
@@ -60,8 +66,11 @@ bool UserService::registerUser(const QString& name, const QString& email, const 
 	user.uMail = email;
 	user.uPwHash = hashPW;
 	user.uRequested = QDateTime::currentDateTime().toString(Qt::ISODate);
-	
+
+	bool isAdmin = false;
+
 	if (!m_userRepository.adminExists()) {
+		isAdmin = true;
 		user.uRole = "admin";
 		user.uStatus = "active";
 		user.uConfirmed = QDateTime::currentDateTime().toString(Qt::ISODate);
@@ -72,7 +81,14 @@ bool UserService::registerUser(const QString& name, const QString& email, const 
 		user.uConfirmed = ""; // not confirmed yet
 	}
 
-	return m_userRepository.uCreate(user, questionId, hashSec);
+	bool success = m_userRepository.uCreate(user, questionId, hashSec);
+	if (success) {
+		return isAdmin ? 2 : 1;
+	}
+	else {
+		qDebug() << "registration failed";
+		return 0;
+	}
 }
 
 bool UserService::resetPassword(const QString& email, const QString& newPassword, int questionId, const QString& plainAnswer) {

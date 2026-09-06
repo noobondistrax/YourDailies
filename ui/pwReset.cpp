@@ -1,4 +1,5 @@
 #include <QMessageBox>
+#include <optional>
 #include "pwReset.h"
 #include "ui/ui_pwReset.h"
 #include "designer.h"
@@ -25,6 +26,7 @@ pwReset::pwReset(AppContext& appContext, QWidget* parent)
 
     connect(ui->pwr_password, &QLineEdit::textChanged, this, &pwReset::validatePasswordMatch);
     connect(ui->pwr_password_confirm, &QLineEdit::textChanged, this, &pwReset::validatePasswordMatch);
+	connect(ui->pwr_pB_back, &QPushButton::clicked, this, &pwReset::onBackClicked);
 
     for (int i = 1; i <= m_context.userService().getSecQuestions().size(); ++i) {
         ui->pwr_sec_question->addItem(m_context.userService().getSecQuestions()[i - 1], QVariant(i));
@@ -62,6 +64,11 @@ void pwReset::onResetClicked()
     QMessageBox::information(this, "Password Reset Successful", "Your password has been reset successfully.");
 
 	emit passwordResetted();
+}
+
+void pwReset::onBackClicked()
+{
+	emit backToLogin();
 }
 
 // Function to live-validate if the password and confirm-password fields match.

@@ -406,6 +406,25 @@ background-color: rgb(206, 206, 206);</string>
     <string>ANTWORT</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="register_pB_back">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>640</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>ZURÜCK</string>
+   </property>
+  </widget>
   <zorder>register_password_label</zorder>
   <zorder>register_name_label</zorder>
   <zorder>register_email_confirm_label</zorder>
@@ -423,6 +442,7 @@ background-color: rgb(206, 206, 206);</string>
   <zorder>register_sec_answer</zorder>
   <zorder>register_sec_question_label</zorder>
   <zorder>register_sec_answer_label</zorder>
+  <zorder>register_pB_back</zorder>
  </widget>
  <tabstops>
   <tabstop>register_name</tabstop>

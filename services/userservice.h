@@ -4,6 +4,7 @@
 #include <QString>
 #include <qlist.h>
 #include "userRepository.h"
+#include "usersession.h"
 #include "widgetservice.h"
 #include "userModel.h"
 
@@ -14,9 +15,9 @@ public:
     ~UserService() = default;
 
 	bool login(const QString& email, const QString& password, UserSession& outSession);
-	bool registerUser(const QString& name, const QString& email, const QString& password, int questionId, const QString& secAnswer);
+	int registerUser(const QString& name, const QString& email, const QString& password, int questionId, const QString& secAnswer);
     bool isUserActive(const UserModel& user) const;
-	bool resetPassword(const QString& email, const QString& newPassword, int questionId, const QString& secAnswer);
+	bool resetPassword(const QString& email, const QString& newPassword, int questionId, const QString& secAnswer);	
 
 	QList<QString> getSecQuestions() const { return m_secQuestions; }
 
@@ -28,7 +29,7 @@ private:
     QString hashing(const QString& plain) const;
 
 
-    const QString kDummyHash = "$argon2id$v=19$m=65536,t=2,p=1$O+EEKGud6QGM+vHcQ4YQ/A$HyZiKG5CGnRfX2s3isoxuu16oZxXRoNk7oe6BVnZg74";
+    inline static const QString kDummyHash = "$argon2id$v=19$m=65536,t=2,p=1$O+EEKGud6QGM+vHcQ4YQ/A$HyZiKG5CGnRfX2s3isoxuu16oZxXRoNk7oe6BVnZg74";
 
 	QList<QString> m_secQuestions = {
 		"Wie hieß dein / e erste / r Lehrer / In ? ",

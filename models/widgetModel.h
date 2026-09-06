@@ -4,17 +4,17 @@
 #include <QString>
 
 struct WidgetModel {
-    int wUID;
-    int wID;
+    int wUID = 0;
+    int wID = 0;
     QString wName;
     QString wPluginName;
     QString wDesc;
-    bool wIsActive;
-    bool wIsVisible;
-    int wPosX;
-    int wPosY;
-    int wWidth;
-    int wHeight;
+    bool wIsActive = false;
+    bool wIsVisible = true;
+    int wPosX = 0;
+    int wPosY = 0;
+    int wWidth = 0;
+    int wHeight = 0;
 };
 
 #endif // WIDGETMODEL_H

@@ -39,11 +39,26 @@ RegisterPage::RegisterPage(AppContext& context, QWidget *parent)
 
     // Event on clicking the registerbutton
     connect(ui->register_pB_register, &QPushButton::clicked, this, &RegisterPage::onRegisterClicked);
+    connect(ui->register_pB_back, &QPushButton::clicked, this, &RegisterPage::onBackClicked);
+
+    ui->register_pB_back->setEnabled(false);
 }
 
 RegisterPage::~RegisterPage()
 {
     delete ui;
+}
+
+void RegisterPage::setBackButtonEnabled(bool enabled)
+{
+    ui->register_pB_back->setEnabled(enabled);
+
+    if (!enabled) {
+        ui->register_pB_back->setToolTip("Back is only available after the first registration.");
+    }
+    else {
+        ui->register_pB_back->setToolTip("Back to Login");
+    }
 }
 
 // Function for validating if the email and confirm-email fields match.
@@ -107,11 +122,25 @@ void RegisterPage::onRegisterClicked()
 		return;
 	}
 
-    if (!m_context.userService().registerUser(name, email1, password1, questionId, secAnswer)) {
-        QMessageBox::warning(this, "Registration Failed", "Failed to register user.");
-    }
-
-	QMessageBox::information(this, "Registration Successful", "Your registration was successful. Please wait for admin approval."); 
+	switch (m_context.userService().registerUser(name, email1, password1, questionId, secAnswer)) {
+	case 0:
+		QMessageBox::warning(this, "Registration Failed", "Failed to register user.");
+		break;
+	case 1:
+		QMessageBox::information(this, "Registration Successful", "Your registration was successful. Please wait for admin approval.");
+		break;
+	case 2:
+		QMessageBox::information(this, "Admin Created", "Admin account created. You can now log in.");
+		break;
+	default:
+		QMessageBox::warning(this, "Registration Failed", "Unknown error occurred.");
+		break;
+	}
 
 	emit RegisterSucceeded();
+}
+
+void RegisterPage::onBackClicked()
+{
+	emit backToLogin();
 }

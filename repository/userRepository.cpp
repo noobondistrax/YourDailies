@@ -169,7 +169,8 @@ bool UserRepository::uDelete(const UserModel& user) {
         return false;
     }
 
-    QByteArray userIDUtf8   = user.uID.toUtf8();
+    //QByteArray userIDUtf8   = user.uID.toUtf8();
+    sqlite3_bind_int(stmt, 1, user.uID);
 
     bool success = (sqlite3_step(stmt) == SQLITE_DONE);
 

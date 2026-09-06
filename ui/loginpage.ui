@@ -74,10 +74,10 @@
 background-color: rgb(206, 206, 206);</string>
    </property>
    <property name="text">
-    <string>example@mail.com</string>
+    <string/>
    </property>
    <property name="placeholderText">
-    <string>BENUTZERNAME</string>
+    <string>example@mail.com</string>
    </property>
   </widget>
   <widget class="QLabel" name="login_password_label">

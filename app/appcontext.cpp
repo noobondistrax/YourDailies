@@ -11,11 +11,12 @@ AppContext::AppContext()
 
     // Einzige Stelle im Programm, an der Dienste erzeugt werden (R-08)
     m_userRepository        = std::make_unique<UserRepository>(m_database);
-    m_userService           = std::make_unique<UserService>(*m_userRepository);
+    m_widgetRepository = std::make_unique<WidgetRepository>(m_database);
+    m_widgetService = std::make_unique<WidgetService>(*m_widgetRepository);
+    m_userService           = std::make_unique<UserService>(*m_userRepository, *m_widgetService);
     m_dashboardRepository   = std::make_unique<DashboardRepository>(m_database);
     m_dashboardService      = std::make_unique<DashboardService>(*m_dashboardRepository);
-    m_widgetRepository      = std::make_unique<WidgetRepository>(m_database);
-    m_widgetService         = std::make_unique<WidgetService>(*m_widgetRepository);
+    
 
     Logger::instance().log(LogLevel::Info, "Dienste erfolgreich erzeugt");
 
@@ -30,8 +31,8 @@ AppContext::~AppContext()
 
 UserSession& AppContext::session()
 {
-    Q_ASSERT(m_session.has_value() && "Kein aktiver User - vorher hasActiveSession() pruefen");
-    return *m_session;
+    //Q_ASSERT(m_session.has_value() && "Kein aktiver User - vorher hasActiveSession() pruefen");
+    return m_session;
 }
 
 void AppContext::startSession(UserSession session)

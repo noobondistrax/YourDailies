@@ -41,6 +41,7 @@ bool Database::open(const QString& fileName, const QString& wantedPath) {
     qDebug() << "Datenbank erfolgreich geöffnet!";
 
     createUsersTable();
+    createUserSecAnswersTable();
     createUserSettingsTable();
     createWidgetsTable();
     createUserWidgetsTabele();

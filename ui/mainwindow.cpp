@@ -55,7 +55,13 @@ void MainWindow::showRegisterPage() {
 	auto* registerpage = new RegisterPage(m_context);
 	ui->stackedWidget->addWidget(registerpage);
 	ui->stackedWidget->setCurrentWidget(registerpage);
-	connect(registerpage, &RegisterPage::RegisterSucceeded, this, &MainWindow::showLoginPage);
+
+    connect(registerpage, &RegisterPage::RegisterSucceeded, this, &MainWindow::showLoginPage);
+	connect(registerpage, &RegisterPage::backToLogin, this, &MainWindow::showLoginPage);
+
+    /* */
+    registerpage->setBackButtonEnabled(m_context.adminExists());
+    /* */
 }
 
 void MainWindow::showPWReset() {
@@ -63,4 +69,5 @@ void MainWindow::showPWReset() {
     ui->stackedWidget->addWidget(pwreset);
     ui->stackedWidget->setCurrentWidget(pwreset);
 	connect(pwreset, &pwReset::passwordResetted, this, &MainWindow::showLoginPage);
+	connect(pwreset, &pwReset::backToLogin, this, &MainWindow::showLoginPage);
 }

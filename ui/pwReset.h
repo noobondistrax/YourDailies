@@ -2,6 +2,7 @@
 #define PWRESET_H	
 
 #include <QWidget>
+#include <QLineEdit>
 #include "appcontext.h"
 
 namespace Ui {
@@ -18,9 +19,11 @@ public:
 
 signals:
 	void passwordResetted();
+	void backToLogin();
 
 private slots:
 	void onResetClicked();
+	void onBackClicked();
 
 private:
 	Ui::pwReset *ui;

@@ -21,7 +21,6 @@ public:
     void setWidgets(QList<WidgetModel> w) { m_widgets = std::move(w); }
     //void setSettings(Settings s) { m_settings = std::move(s); }
 
-    const UserModel& user() const { return m_user; }
     //const DashboardPage& dashboard() const { return m_dashboard; }
     QList<WidgetModel>& widgets() { return m_widgets; }
     //const Settings& settings() const { return m_settings; }

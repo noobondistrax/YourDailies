@@ -21,11 +21,17 @@ public:
 
 signals:
     void RegisterSucceeded();
+    void backToLogin();
+
+		// for "Back Button - at firststart desabled, after firststart enabled"
+public slots:
+    void setBackButtonEnabled(bool enabled);
 
 private slots:
     void validateEmailMatch();
     void validatePasswordMatch();
     void onRegisterClicked();
+    void onBackClicked();
 
 private:
     Ui::RegisterPage *ui;
